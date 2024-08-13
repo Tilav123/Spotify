@@ -1,0 +1,256 @@
+@import url('https://fonts.cdnfonts.com/css/circular-std');
+
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: 'Circular Std', sans-serif;
+  /* outline: 1px solid green !important; */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Важно, не трогать! */
+}
+.body{
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+}
+aside{
+  width: 420px;
+  height: 100%;
+  flex-shrink: 0;
+  display: flex;
+  border-radius: 20px;
+  flex-direction: column;
+  gap: 8px;
+}
+.top_aside{
+  height: 112px;
+  width: 100%;
+  border-radius: 5px;
+  flex-shrink: 0;
+  padding: 8px 12px;
+  background-color: #121212;
+}
+.bottom_aside{
+  flex-grow: 1;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 5px;
+  background-color: #121212;
+}
+main{
+  flex-grow: 1;
+  width: 100%;
+  border-radius: 5px;
+  overflow-y: auto;
+  background: linear-gradient(180deg, #159b44 0%, #121212 30%);
+}
+.aside_part{
+  height: 48px;
+  flex-grow: 1;
+  display: flex;
+  font-weight: 700;
+  color: white;
+  align-items: center;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: 0.3s ease;
+  gap: 20px;
+}
+.active_aside_part{
+  opacity: 1;
+}
+.aside_part:hover{
+  opacity: 1;
+}
+.aside_part_two{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.aside_icon{
+  width: 24px;
+  height: 24px;
+}
+.aside_text{
+  height: fit-content;
+  font-weight: 700;
+  color: white;
+}
+.add_playlist{
+  width: 30px;
+  height: 30px;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+  opacity: 0.7;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+.add_playlist::after{
+  content: '';
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  opacity: 0;
+  height: 100%;
+  transition: 0.3s ease;
+  border-radius: 100%;
+  background-color: #3c3c3c;
+}
+.add_playlist:hover{
+  opacity: 1;
+}
+.add_playlist:hover::after{
+  opacity: 100%;
+}
+.invert{
+  filter: invert(100%);
+}
+.icon_aside{
+  width: 80%;
+  height: auto;
+  position: relative;
+  z-index: 1;
+}
+.aside_buttons{
+  width: 100%;
+  padding: 8px 0;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+.aside_button{
+  background-color: #2A2A2A;
+  padding: 8px 12px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: white;
+  transition: 0.3s ease;
+  cursor: pointer;
+  border-radius: 15px;
+}
+.aside_button:hover{
+  background-color: #3c3c3c;
+}
+.search_aside_icon{
+  width: 50%;
+}
+.aside_listened{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 400!important;
+  padding-right: 12px;
+  transition: 0.1s;
+  color: white;
+  opacity: 0.7;
+}
+.aside_listened:hover{
+  transform: scale(1.05);
+  opacity: 1;
+}
+.aside_listened:active{
+  transform: scale(1);
+  opacity: 0.7;
+}
+.buttons_listened{
+  transition: 0.3s ease;
+  cursor: pointer;
+  justify-content: space-between;
+}
+.listened_icon{
+  height: fit-content;
+}
+.aside_playlists{
+  width: 100%;
+}
+.aside_playlist_item{
+  width: 100%;
+  height: 64px;
+  padding: 8px;
+  transition: 0.3s ease;
+  cursor: pointer;
+  gap: 10px;
+  border-radius: 5px;
+  display: flex;
+}
+.aside_playlist_img{
+  width: auto;
+  border-radius: 5px;
+}
+.aside_playlist_data{
+  display: flex;
+  color: white;
+  flex-direction: column;
+  justify-content: center;
+}
+.aside_playlist_type{
+  color: #787878;
+}
+.aside_playlist_item:hover{
+  background-color: #2A2A2A;
+}
+.aside_playlist_item:active{
+  background-color: black;
+}
+.aside_icon{
+  display: block;
+}
+.aside_icon_two{
+  display: none;
+}
+.active_aside_part .aside_icon{
+  display: none;
+}
+.active_aside_part .aside_icon_two{
+  display: block;
+}
+.player{
+  width: 100%;
+  height: 72px;
+  background-color: black;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+/* Hide aside */
+.hide_aside .aside_listened{
+  display: none;
+}
+.hide_aside .add_playlist{
+  display: none;
+}
+.hide_aside .aside_buttons{
+  display: none;
+}
+.hide_aside .aside_text{
+  display: none;
+}
+.hide_aside .aside_playlist_data{
+  display: none;
+}
+.hide_aside .aside_playlist_item{
+  padding: 8px 0;
+}
+.hide_aside{
+  width: 72px;
+}
+.hide_aside .aside_part{
+  justify-content: center;
+}
+.hide_aside .aside_part .library_icon_aside{
+  display: none;
+}
+.hide_aside .aside_part .library_icon_aside_two{
+  display: block;
+}
