@@ -14,6 +14,34 @@ function Layout({ children }) {
     const [Therd_bg, setTherd_bg] = useState(" rgb(63, 63, 63)")
     const [Therd_a, setTherd_a] = useState("white")
 
+    const right_arrow_click = () => {
+
+
+        if(First_bg === "white"){
+            second_change()
+        }
+        if(Second_bg === "white"){
+            therd_change()
+        }
+        if(Therd_bg === "white"){
+        }
+    }
+
+    const left_arrow_click = () => {
+
+        if(First_bg === "white"){
+        }
+        if(Second_bg === "white"){
+            first_change()
+        }
+        if(Therd_bg === "white"){
+            second_change()
+        }
+    }
+
+
+
+
 
     const first_change = () => {
         setFirst_bg("white" )
@@ -103,9 +131,9 @@ function Layout({ children }) {
                             <div className="first">
                                 <div className="arrows">
 
-                                    <img className="left" src="/left_arrow.svg" alt="" />
+                                    <img onClick={left_arrow_click} className="left" src="/left_arrow.svg" alt="" />
 
-                                    <img className="right" src="/left_arrow.svg" alt="" />
+                                    <img onClick={right_arrow_click} className="right" src="/left_arrow.svg" alt="" />
 
                                 </div>
 
