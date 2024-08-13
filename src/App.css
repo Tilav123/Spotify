@@ -272,7 +272,7 @@ header .first{
   
 }
 
-header .sec ul{
+.sec_ul{
   display: flex;
   list-style-type:none;
   padding-left: 20px;
@@ -283,6 +283,12 @@ header .sec ul{
   padding: 6px 13px;
   background-color: rgb(63, 63, 63);
   border-radius: 15px;
+  transition: .2s;
+}
+
+
+.cat:active{
+  scale: .9;
 }
 
 
@@ -292,6 +298,19 @@ header .sec ul{
   font-size: 14px;
   font-weight: 500;
 }
+
+.dog{
+  background-color: white;
+}
+
+ #um{
+   background-color: white;
+}
+
+#um a {
+  color: black;
+}
+
 
 
 .arrows {
