@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import AsideItem from "../components/AsideItem";
+
 function Layout({ children }) {
-    function hidingAside(){
+    function hidingAside() {
         let aside = document.querySelector('aside')
         aside.classList.toggle("hide_aside")
     }
+
+
+
+
+    
+
     return (
         <>
             <div className="body">
@@ -43,19 +50,68 @@ function Layout({ children }) {
                             </button>
                             <div className="aside_listened">
                                 <p className="">Недавно прослушано</p>
-                                <img src="./aside_unknown_shit.png" alt="" className="listened_icon"/>
+                                <img src="./aside_unknown_shit.png" alt="" className="listened_icon" />
                             </div>
                         </div>
                         <div className="aside_playlists">
-                           <AsideItem></AsideItem>
-                           <AsideItem></AsideItem>
-                           <AsideItem></AsideItem>
+                            <AsideItem></AsideItem>
+                            <AsideItem></AsideItem>
+                            <AsideItem></AsideItem>
                         </div>
                     </div>
                 </aside>
                 <main>
                     <div className="container">
-                        <header></header>
+                        <header>
+                            <div className="first">
+                                <div className="arrows">
+
+                                    <img className="left" src="/left_arrow.svg" alt="" />
+
+                                    <img className="right" src="/left_arrow.svg" alt="" />
+
+                                </div>
+
+                                <div className="additional_features">
+
+                                    <p className="premium_text">Узнать больше о Premium</p>
+
+                                    <p className="install_text"> <span><img src="/download.svg" alt="" /></span>  Установить приложение</p>
+
+                                    <div className="bell">
+                                        <img src="/bell.svg" alt="" />
+                                    </div>
+
+                                    <div className="person">
+                                        <img src="/person.svg" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="sec">
+                                <ul>
+
+                                    <li id="1" className="cat">
+                                        <a className="cat_a" id="11" href="#">Всё</a>
+                                    </li>
+
+
+                                    <li id="2" className="cat">
+                                        <a  className="cat_a" id="22" href="#">Музыка</a>
+                                    </li>
+
+
+                                    <li id="3" className="cat">
+                                        <a className="cat_a" id="33" href="#">Подкасты</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+
+
+
+
+                        </header>
                         {children}
                         <footer></footer>
                     </div>
