@@ -1,6 +1,6 @@
 import React from "react";
 
-function songs(song) {
+function songs(song,playList) {
     console.log(song);
     
     return (
@@ -8,7 +8,7 @@ function songs(song) {
             <div key={song.id} className="item">
                 <div className="first">
                     <img className='song_img' src={song.images[0].url} alt="" />
-                    <div className="play">
+                    <div className="play" onClick={()=>playList(song.tracks.items)}>
                         <img src="/player.svg" alt="" />
                     </div>
                 </div>

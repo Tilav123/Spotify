@@ -39,7 +39,12 @@ function App() {
 
     fetchPlaylistData()
   }, [])
-
+  function PlayPlaylistSongs(songs){
+    let i = 0
+    let audio = document.querySelector('audio')
+    audio.src = songs[0].track.preview_url
+    audio.play()
+  }
   return (
     <>
       <Layout>
@@ -51,7 +56,7 @@ function App() {
             </div>
 
             <div className="item-box">
-              {playlistData.length > 0 && playlistData.map((item) => songs(item))}
+              {playlistData.length > 0 && playlistData.map((item) => songs(item,PlayPlaylistSongs))}
             </div>
           </div>
         </div>
