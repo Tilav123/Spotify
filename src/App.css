@@ -624,10 +624,15 @@ header .first {
 
   .item-box .item:hover{
     background-color: #1c1c1c;
+
+    .play{
+      display: block;
+    }
   }
   
   .item .first{
     padding: 15px 15px 0px 15px;
+    position: relative;
   }
 
   
@@ -649,4 +654,14 @@ header .first {
 
   .song_autor{
     color: #a2a2a2;
+  }
+
+  .play{
+    background-color: #159b44;
+    position: absolute;
+    padding: 20px;
+    bottom: 10px;
+    right: 20px;
+    border-radius: 50%;
+    display: none;
   }
