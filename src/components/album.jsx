@@ -1,18 +1,20 @@
 import React from "react";
 
-function songs(song ,index ) {
+function songs(song) {
+    console.log(song);
+    
     return (
         <>            
-            <div key={index} className="item">
+            <div key={song.id} className="item">
                 <div className="first">
-                    <img className='song_img' src={song.img} alt="" />
+                    <img className='song_img' src={song.images[0].url} alt="" />
                     <div className="play">
                         <img src="/player.svg" alt="" />
                     </div>
                 </div>
                 <div className="second">
-                    <h2 className='song_title'>{song.title}</h2>
-                    <p className='song_autor'>{song.autor}</p>
+                    <h2 className='song_title'>{song.name}</h2>
+                    <p className='song_autor'>{song.description}</p>
                 </div>
             </div>
         </>

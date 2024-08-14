@@ -191,7 +191,7 @@ function Layout({ children }) {
                 </main>
             </div>
 
-            <div className="player_blc">
+            <div className="player">
 
                 <div className="playlist_blc">
 
