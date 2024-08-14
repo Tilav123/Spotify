@@ -178,7 +178,44 @@ function Layout({ children }) {
 
                         </header>
                         {children}
-                        <footer></footer>
+                        <footer>
+                            <div className="cant">
+                                <div className="item">
+                                    <span>Компания</span>
+                                    <a href="#">О нас</a>
+                                    <a href="#">Вакансии</a>
+                                    <a href="#">For the Record</a>
+                                    </div>
+                                <div className="item">
+                                    <span>Сообщества</span>
+                                    <a href="#">Для исполнителей</a>
+                                    <a href="#">Для разработчиков</a>
+                                    <a href="#">Реклама</a>
+                                    <a href="#">Для инвесторов</a>
+                                    <a href="#">Для вендоров</a>
+                                    </div>
+                                <div className="item">
+                                    <span>Полезные ссылки</span>
+                                    <a href="#">Справка</a>
+                                    <a href="#">Бесплатное мобильное <br /> приложение</a>
+                                    </div>
+                                <div className="item">
+                                    <span>Планы Spotify</span>
+                                    <a href="#">Индивидуальная <br /> подписка Spotify <br /> Premium</a>
+                                    <a href="#">Premium для двоих</a>
+                                    <a href="#">Premium для семьи</a>
+                                    <a href="#">Premium для студентов</a>
+                                    <a href="#">Бесплатная версия Spotify</a>
+                                    </div>
+                                <div className="items">
+                                    <img className="icons" src="/insta.svg" alt="" />
+                                    <img className="icons" src="/twitter.svg" alt="" />
+                                    <img className="icons" src="/facebook.svg" alt="" />
+                                    </div>
+                            </div>
+                            <div className="hr"></div>
+                             <span className="yunus">© 2024 Spotify AB</span>
+                        </footer>
                     </div>
                 </main>
             </div>

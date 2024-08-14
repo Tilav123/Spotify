@@ -687,3 +687,50 @@ header .first {
   width: 18px;
   height: auto;
 }
+
+footer {
+  width: 95%;
+  margin: 0 auto;
+  background-color: #000;
+  padding-top: 15px;
+
+}
+.cant {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  color: white;
+  margin-bottom: 50px;
+}
+.icons {
+  width: 20px;
+}
+.items {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.item a {
+  color: rgb(169, 169, 169);
+
+}
+.item a:hover {
+  color: white;
+  text-decoration: underline;
+}
+.hr {
+  width: 95%;
+  margin: 0 auto;
+  background-color: rgb(94, 94, 94);
+  height: 1px;
+  margin-bottom: 30px;
+}
+.yunus {
+  color: white;
+  margin-left: 2.7%;
+}
