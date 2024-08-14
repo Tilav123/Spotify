@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React from 'react'
 import './App.css'
 import Layout from './layout/Layout'
 import songs from './components/Album'
@@ -47,8 +47,6 @@ function App() {
               </div>
 
             </div>
-
-          
           </div>
       </Layout>
     </>

@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import AsideItem from "../components/AsideItem";
+import queue_icon from "/queue_icon.png"
+import speaker_icon from "/speaker_icon.png"
+import volume_icon from "/volume_icon.png"
+import zoom_icon from "/zoom_icon.png"
+import photo_morgen from "/morgen.jpg"
+
 
 function Layout({ children }) {
     function hidingAside() {
@@ -177,12 +183,77 @@ function Layout({ children }) {
 
 
                         </header>
+
                         {children}
+
                         <footer></footer>
                     </div>
                 </main>
             </div>
-            <div className="player"></div>
+
+            <div className="player_blc">
+
+                <div className="playlist_blc">
+
+                    <img src={photo_morgen} alt="" />
+
+                    <div className="music_titles">
+
+                        <p>Play It Safe</p>
+
+                        <p>Julia Wolf</p>
+
+                    </div>
+
+                </div>
+
+                <div className="music-player">
+
+                    <div className="msc_player_icons">
+
+                        <i className='bx bx-shuffle'></i>
+
+                        <i className='bx bx-skip-previous'></i>
+
+                        <i className='bx bx-play'></i>
+
+                        <i className='bx bx-skip-next'></i>
+
+                        <i className='bx bx-refresh'></i>
+
+                    </div>
+
+                    <div className="line_music_plr">
+
+                        <p>1:06</p>
+
+                        <div className="player_play">
+
+                            <div className="line_music"></div>
+
+                        </div>
+
+                        <p>3:20</p>
+
+                    </div>
+
+                </div>
+
+                <div className="player_icons">
+
+                    <img src={queue_icon} alt="" />
+
+                    <img src={speaker_icon} alt="" />
+
+                    <img src={volume_icon} alt="" />
+
+                    <div className="line_player"></div>
+
+                    <img src={zoom_icon} alt="" />
+
+                </div>
+
+            </div>
         </>
     )
 }
