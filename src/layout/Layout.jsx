@@ -17,24 +17,24 @@ function Layout({ children }) {
     const right_arrow_click = () => {
 
 
-        if(First_bg === "white"){
+        if (First_bg === "white") {
             second_change()
         }
-        if(Second_bg === "white"){
+        if (Second_bg === "white") {
             therd_change()
         }
-        if(Therd_bg === "white"){
+        if (Therd_bg === "white") {
         }
     }
 
     const left_arrow_click = () => {
 
-        if(First_bg === "white"){
+        if (First_bg === "white") {
         }
-        if(Second_bg === "white"){
+        if (Second_bg === "white") {
             first_change()
         }
-        if(Therd_bg === "white"){
+        if (Therd_bg === "white") {
             second_change()
         }
     }
@@ -44,7 +44,7 @@ function Layout({ children }) {
 
 
     const first_change = () => {
-        setFirst_bg("white" )
+        setFirst_bg("white")
         setFirst_a("black")
 
         setSecond_bg("rgb(63, 63, 63)")
@@ -53,7 +53,7 @@ function Layout({ children }) {
         setTherd_a("white")
     }
 
-    
+
     const second_change = () => {
         setSecond_bg("white")
         setSecond_a("black")
@@ -64,7 +64,7 @@ function Layout({ children }) {
         setTherd_a("white")
     }
 
-    
+
     const therd_change = () => {
         setTherd_bg("white")
         setTherd_a("black")
@@ -75,7 +75,7 @@ function Layout({ children }) {
         setFirst_a("white")
     }
 
-    
+
 
     return (
         <>
@@ -156,18 +156,18 @@ function Layout({ children }) {
                             <div className="sec">
                                 <ul className="sec_ul">
 
-                                    <li id="um" onClick={first_change} style={{backgroundColor : First_bg}} className="cat">
-                                        <a style={{color:First_a}} className="cat_a" id="11" href="#">Всё</a>
+                                    <li id="um" onClick={first_change} style={{ backgroundColor: First_bg }} className="cat">
+                                        <a style={{ color: First_a }} className="cat_a" id="11" href="#">Всё</a>
                                     </li>
 
 
-                                    <li onClick={second_change} style={{backgroundColor:Second_bg}} className="cat">
-                                        <a  style={{color:Second_a}} className="cat_a" id="22" href="#">Музыка</a>
+                                    <li onClick={second_change} style={{ backgroundColor: Second_bg }} className="cat">
+                                        <a style={{ color: Second_a }} className="cat_a" id="22" href="#">Музыка</a>
                                     </li>
 
 
-                                    <li onClick={therd_change} style={{backgroundColor: Therd_bg}} className="cat">
-                                        <a style={{color:Therd_a}} className="cat_a" id="33" href="#">Подкасты</a>
+                                    <li onClick={therd_change} style={{ backgroundColor: Therd_bg }} className="cat">
+                                        <a style={{ color: Therd_a }} className="cat_a" id="33" href="#">Подкасты</a>
                                     </li>
                                 </ul>
 
@@ -182,9 +182,7 @@ function Layout({ children }) {
                     </div>
                 </main>
             </div>
-            <div className="player">
-                
-            </div>
+            <div className="player"></div>
         </>
     )
 }

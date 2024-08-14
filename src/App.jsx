@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Layout from './layout/Layout'
-import songs from './components/album'
+import songs from './components/Album'
 function App() {
 
   const arr = [
@@ -38,7 +38,7 @@ function App() {
             
             <div className="box">
               <div className="up">
-              <h1 className='category'>Что-то новенькое</h1>
+              <h1 className='category'>Только для вас</h1>
               <a className='show_all' href="#">Показать все</a>
               </div>
 
