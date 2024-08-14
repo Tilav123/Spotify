@@ -1,10 +1,82 @@
 import React, { useState } from "react";
 import AsideItem from "../components/AsideItem";
+
 function Layout({ children }) {
-    function hidingAside(){
+    function hidingAside() {
         let aside = document.querySelector('aside')
         aside.classList.toggle("hide_aside")
     }
+
+    const [First_bg, setFirst_bg] = useState("white")
+    const [First_a, setFirst_a] = useState("black")
+    const [Second_bg, setSecond_bg] = useState(" rgb(63, 63, 63)")
+    const [Second_a, setSecond_a] = useState("white")
+    const [Therd_bg, setTherd_bg] = useState(" rgb(63, 63, 63)")
+    const [Therd_a, setTherd_a] = useState("white")
+
+    const right_arrow_click = () => {
+
+
+        if(First_bg === "white"){
+            second_change()
+        }
+        if(Second_bg === "white"){
+            therd_change()
+        }
+        if(Therd_bg === "white"){
+        }
+    }
+
+    const left_arrow_click = () => {
+
+        if(First_bg === "white"){
+        }
+        if(Second_bg === "white"){
+            first_change()
+        }
+        if(Therd_bg === "white"){
+            second_change()
+        }
+    }
+
+
+
+
+
+    const first_change = () => {
+        setFirst_bg("white" )
+        setFirst_a("black")
+
+        setSecond_bg("rgb(63, 63, 63)")
+        setTherd_bg("rgb(63, 63, 63)")
+        setSecond_a("white")
+        setTherd_a("white")
+    }
+
+    
+    const second_change = () => {
+        setSecond_bg("white")
+        setSecond_a("black")
+
+        setFirst_bg("rgb(63, 63, 63)")
+        setTherd_bg("rgb(63, 63, 63)")
+        setFirst_a("white")
+        setTherd_a("white")
+    }
+
+    
+    const therd_change = () => {
+        setTherd_bg("white")
+        setTherd_a("black")
+
+        setSecond_bg("rgb(63, 63, 63)")
+        setFirst_bg("rgb(63, 63, 63)")
+        setSecond_a("white")
+        setFirst_a("white")
+    }
+
+    
+
     return (
         <>
             <div className="body">
@@ -43,20 +115,68 @@ function Layout({ children }) {
                             </button>
                             <div className="aside_listened">
                                 <p className="">Недавно прослушано</p>
-                                <img src="./aside_unknown_shit.png" alt="" className="listened_icon"/>
+                                <img src="./aside_unknown_shit.png" alt="" className="listened_icon" />
                             </div>
                         </div>
                         <div className="aside_playlists">
-                           <AsideItem></AsideItem>
-                           <AsideItem></AsideItem>
-                           <AsideItem></AsideItem>
+                            <AsideItem></AsideItem>
+                            <AsideItem></AsideItem>
+                            <AsideItem></AsideItem>
                         </div>
                     </div>
                 </aside>
                 <main>
                     <div className="container">
-                        <header></header>
+                        <header>
+                            <div className="first">
+                                <div className="arrows">
+
+                                    <img onClick={left_arrow_click} className="left" src="/left_arrow.svg" alt="" />
+
+                                    <img onClick={right_arrow_click} className="right" src="/left_arrow.svg" alt="" />
+
+                                </div>
+
+                                <div className="additional_features">
+
+                                    <p className="premium_text">Узнать больше о Premium</p>
+
+                                    <p className="install_text"> <span><img src="/download.svg" alt="" /></span>  Установить приложение</p>
+
+                                    <div className="bell">
+                                        <img src="/bell.svg" alt="" />
+                                    </div>
+
+                                    <div className="person">
+                                        <img src="/person.svg" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="sec">
+                                <ul className="sec_ul">
+
+                                    <li id="um" onClick={first_change} style={{backgroundColor : First_bg}} className="cat">
+                                        <a style={{color:First_a}} className="cat_a" id="11" href="#">Всё</a>
+                                    </li>
+
+
+                                    <li onClick={second_change} style={{backgroundColor:Second_bg}} className="cat">
+                                        <a  style={{color:Second_a}} className="cat_a" id="22" href="#">Музыка</a>
+                                    </li>
+
+
+                                    <li onClick={therd_change} style={{backgroundColor: Therd_bg}} className="cat">
+                                        <a style={{color:Therd_a}} className="cat_a" id="33" href="#">Подкасты</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                        </header>
+
                         {children}
+
                         <footer></footer>
                     </div>
                 </main>

@@ -1,14 +1,56 @@
-import { useState } from 'react'
+import React from 'react'
 import './App.css'
 import Layout from './layout/Layout'
+import songs from './components/album'
 function App() {
+
+  const arr = [
+    {
+      id: Math.random(),
+      title: "Big Dawgs",
+      autor: "Morgenshtern",
+      img: "/morgen.jpg"
+    },
+    {
+      id: Math.random(),
+      title: "Big Dawgs",
+      autor: "Morgenshtern",
+      img: "/morgen.jpg"
+    },
+    {
+      id: Math.random(),
+      title: "Big Dawgs",
+      autor: "Morgenshtern",
+      img: "/morgen.jpg"
+    },
+    {
+      id: Math.random(),
+      title: "Big Dawgs",
+      autor: "Morgenshtern",
+      img: "/morgen.jpg"
+    },
+  ]
+
   return (
     <>
       <Layout>
-          <div></div>
-      </Layout>
+        <div className='.container'>
 
-      <h1>Baxtzod's version</h1>
+          <div className="box">
+            <div className="up">
+              <h1 className='category'>Что-то новенькое</h1>
+              <a className='show_all' href="#">Показать все</a>
+            </div>
+
+            <div className="item-box">
+              {arr.map((item) => songs(item))}
+            </div>
+
+          </div>
+
+
+        </div>
+      </Layout>
     </>
   )
 }
