@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import AsideItem from "../components/AsideItem";
+import queue_icon from "/queue_icon.png"
+import speaker_icon from "/speaker_icon.png"
+import volume_icon from "/volume_icon.png"
+import zoom_icon from "/zoom_icon.png"
+import photo_morgen from "/morgen.jpg"
 
 function Layout({ children }) {
     function hidingAside() {
@@ -17,24 +22,24 @@ function Layout({ children }) {
     const right_arrow_click = () => {
 
 
-        if(First_bg === "white"){
+        if (First_bg === "white") {
             second_change()
         }
-        if(Second_bg === "white"){
+        if (Second_bg === "white") {
             therd_change()
         }
-        if(Therd_bg === "white"){
+        if (Therd_bg === "white") {
         }
     }
 
     const left_arrow_click = () => {
 
-        if(First_bg === "white"){
+        if (First_bg === "white") {
         }
-        if(Second_bg === "white"){
+        if (Second_bg === "white") {
             first_change()
         }
-        if(Therd_bg === "white"){
+        if (Therd_bg === "white") {
             second_change()
         }
     }
@@ -44,7 +49,7 @@ function Layout({ children }) {
 
 
     const first_change = () => {
-        setFirst_bg("white" )
+        setFirst_bg("white")
         setFirst_a("black")
 
         setSecond_bg("rgb(63, 63, 63)")
@@ -53,7 +58,7 @@ function Layout({ children }) {
         setTherd_a("white")
     }
 
-    
+
     const second_change = () => {
         setSecond_bg("white")
         setSecond_a("black")
@@ -64,7 +69,7 @@ function Layout({ children }) {
         setTherd_a("white")
     }
 
-    
+
     const therd_change = () => {
         setTherd_bg("white")
         setTherd_a("black")
@@ -75,7 +80,7 @@ function Layout({ children }) {
         setFirst_a("white")
     }
 
-    
+
 
     return (
         <>
@@ -156,18 +161,18 @@ function Layout({ children }) {
                             <div className="sec">
                                 <ul className="sec_ul">
 
-                                    <li id="um" onClick={first_change} style={{backgroundColor : First_bg}} className="cat">
-                                        <a style={{color:First_a}} className="cat_a" id="11" href="#">Всё</a>
+                                    <li id="um" onClick={first_change} style={{ backgroundColor: First_bg }} className="cat">
+                                        <a style={{ color: First_a }} className="cat_a" id="11" href="#">Всё</a>
                                     </li>
 
 
-                                    <li onClick={second_change} style={{backgroundColor:Second_bg}} className="cat">
-                                        <a  style={{color:Second_a}} className="cat_a" id="22" href="#">Музыка</a>
+                                    <li onClick={second_change} style={{ backgroundColor: Second_bg }} className="cat">
+                                        <a style={{ color: Second_a }} className="cat_a" id="22" href="#">Музыка</a>
                                     </li>
 
 
-                                    <li onClick={therd_change} style={{backgroundColor: Therd_bg}} className="cat">
-                                        <a style={{color:Therd_a}} className="cat_a" id="33" href="#">Подкасты</a>
+                                    <li onClick={therd_change} style={{ backgroundColor: Therd_bg }} className="cat">
+                                        <a style={{ color: Therd_a }} className="cat_a" id="33" href="#">Подкасты</a>
                                     </li>
                                 </ul>
 
@@ -181,7 +186,70 @@ function Layout({ children }) {
                     </div>
                 </main>
             </div>
-            <div className="player"></div>
+
+            <div className="player_blc">
+
+                <div className="playlist_blc">
+
+                    <img src={photo_morgen} alt="" />
+
+                    <div className="music_titles">
+
+                        <p>Play It Safe</p>
+
+                        <p>Julia Wolf</p>
+
+                    </div>
+
+                </div>
+
+                <div className="music-player">
+
+                    <div className="msc_player_icons">
+
+                        <i className='bx bx-shuffle'></i>
+
+                        <i className='bx bx-skip-previous'></i>
+
+                        <i className='bx bx-play'></i>
+
+                        <i className='bx bx-skip-next'></i>
+
+                        <i className='bx bx-refresh'></i>
+
+                    </div>
+
+                    <div className="line_music_plr">
+
+                        <p>1:06</p>
+
+                        <div className="player_play">
+
+                            <div className="line_music"></div>
+
+                        </div>
+
+                        <p>3:20</p>
+
+                    </div>
+
+                </div>
+
+                <div className="player_icons">
+
+                    <img src={queue_icon} alt="" />
+
+                    <img src={speaker_icon} alt="" />
+
+                    <img src={volume_icon} alt="" />
+
+                    <div className="line_player"></div>
+
+                    <img src={zoom_icon} alt="" />
+
+                </div>
+
+            </div>
         </>
     )
 }
