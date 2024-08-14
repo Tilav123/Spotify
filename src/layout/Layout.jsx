@@ -182,7 +182,9 @@ function Layout({ children }) {
                     </div>
                 </main>
             </div>
-            <div className="player"></div>
+            <div className="player">
+                
+            </div>
         </>
     )
 }
