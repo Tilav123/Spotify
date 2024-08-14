@@ -7,6 +7,8 @@ function App() {
       <Layout>
           <div></div>
       </Layout>
+
+      <h1>Baxtzod's version</h1>
     </>
   )
 }
