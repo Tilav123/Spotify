@@ -5,99 +5,34 @@ import speaker_icon from "/speaker_icon.png"
 import volume_icon from "/volume_icon.png"
 import zoom_icon from "/zoom_icon.png"
 import photo_morgen from "/morgen.jpg"
+import { Outlet } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-
-function Layout({ children }) {
+function Layout() {
     function hidingAside() {
         let aside = document.querySelector('aside')
         aside.classList.toggle("hide_aside")
     }
 
-    const [First_bg, setFirst_bg] = useState("white")
-    const [First_a, setFirst_a] = useState("black")
-    const [Second_bg, setSecond_bg] = useState(" rgb(63, 63, 63)")
-    const [Second_a, setSecond_a] = useState("white")
-    const [Therd_bg, setTherd_bg] = useState(" rgb(63, 63, 63)")
-    const [Therd_a, setTherd_a] = useState("white")
-
-    const right_arrow_click = () => {
-
-
-        if (First_bg === "white") {
-            second_change()
-        }
-        if (Second_bg === "white") {
-            therd_change()
-        }
-        if (Therd_bg === "white") {
-        }
-    }
-
-    const left_arrow_click = () => {
-
-        if (First_bg === "white") {
-        }
-        if (Second_bg === "white") {
-            first_change()
-        }
-        if (Therd_bg === "white") {
-            second_change()
-        }
-    }
-
-
-
-
-
-    const first_change = () => {
-        setFirst_bg("white")
-        setFirst_a("black")
-
-        setSecond_bg("rgb(63, 63, 63)")
-        setTherd_bg("rgb(63, 63, 63)")
-        setSecond_a("white")
-        setTherd_a("white")
-    }
-
-
-    const second_change = () => {
-        setSecond_bg("white")
-        setSecond_a("black")
-
-        setFirst_bg("rgb(63, 63, 63)")
-        setTherd_bg("rgb(63, 63, 63)")
-        setFirst_a("white")
-        setTherd_a("white")
-    }
-
-
-    const therd_change = () => {
-        setTherd_bg("white")
-        setTherd_a("black")
-
-        setSecond_bg("rgb(63, 63, 63)")
-        setFirst_bg("rgb(63, 63, 63)")
-        setSecond_a("white")
-        setFirst_a("white")
-    }
-
-
+    const location = useLocation();
+    const isSearchPage = location.pathname.startsWith('/search');
 
     return (
         <>
             <div className="body">
                 <aside>
                     <div className="top_aside">
-                        <div className="aside_part active_aside_part">
+                        <Link to={"/"} className={`aside_part ${location.pathname == '/' && "active_aside_part"}`}>
                             <img src="./home_icon.png" alt="" className="aside_icon" />
                             <img src="./home_active_icon.png" alt="" className="aside_icon aside_icon_two" />
                             <p className="aside_text">Главная</p>
-                        </div>
-                        <div className="aside_part">
+                        </Link>
+                        <Link to={"/search"} className={`aside_part ${isSearchPage && "active_aside_part"}`}>
                             <img src="./search_icon.png" alt="" className="aside_icon" />
                             <img src="./search_active_icon.png" alt="" className="aside_icon aside_icon_two" />
                             <p className="aside_text">Поиск</p>
-                        </div>
+                        </Link>
                     </div>
                     <div className="bottom_aside">
                         <div className="aside_part_two">
@@ -131,16 +66,18 @@ function Layout({ children }) {
                         </div>
                     </div>
                 </aside>
-                <main>
+                <main style={location.pathname === '/' ? { background: 'linear-gradient(180deg, #159b44 0%, #121212 30%)' } : {}}>
                     <div className="container">
                         <header>
                             <div className="first">
                                 <div className="arrows">
 
-                                    <img onClick={left_arrow_click} className="left" src="/left_arrow.svg" alt="" />
+                                    <img className="left" src="/left_arrow.svg" alt="" />
 
-                                    <img onClick={right_arrow_click} className="right" src="/left_arrow.svg" alt="" />
-
+                                    <img className="right" src="/left_arrow.svg" alt="" />
+                                    <div className="search_box"  style={isSearchPage ? { display: "block" } : { display: "none" }}>
+                                        <input type="text" name="" id="" className="search_input" placeholder="Что хочешь включить ?" />
+                                    </div>
                                 </div>
 
                                 <div className="additional_features">
@@ -159,32 +96,26 @@ function Layout({ children }) {
                                 </div>
                             </div>
 
-                            <div className="sec">
+                            {location.pathname == '/' && <div className="sec">
                                 <ul className="sec_ul">
 
-                                    <li id="um" onClick={first_change} style={{ backgroundColor: First_bg }} className="cat">
-                                        <a style={{ color: First_a }} className="cat_a" id="11" href="#">Всё</a>
+                                    <li id="um" className="cat">
+                                        <a className="cat_a" id="11" href="#">Всё</a>
                                     </li>
 
 
-                                    <li onClick={second_change} style={{ backgroundColor: Second_bg }} className="cat">
-                                        <a style={{ color: Second_a }} className="cat_a" id="22" href="#">Музыка</a>
+                                    <li className="cat">
+                                        <a className="cat_a" id="22" href="#">Музыка</a>
                                     </li>
 
 
-                                    <li onClick={therd_change} style={{ backgroundColor: Therd_bg }} className="cat">
-                                        <a style={{ color: Therd_a }} className="cat_a" id="33" href="#">Подкасты</a>
+                                    <li className="cat">
+                                        <a className="cat_a" id="33" href="#">Подкасты</a>
                                     </li>
                                 </ul>
-
-                            </div>
-
-
-
-
+                            </div>}
                         </header>
-
-                        {children}
+                        <Outlet></Outlet>
                         <footer>
                             <div className="cant">
                                 <div className="item">
@@ -192,7 +123,7 @@ function Layout({ children }) {
                                     <a href="#">О нас</a>
                                     <a href="#">Вакансии</a>
                                     <a href="#">For the Record</a>
-                                    </div>
+                                </div>
                                 <div className="item">
                                     <span>Сообщества</span>
                                     <a href="#">Для исполнителей</a>
@@ -200,12 +131,12 @@ function Layout({ children }) {
                                     <a href="#">Реклама</a>
                                     <a href="#">Для инвесторов</a>
                                     <a href="#">Для вендоров</a>
-                                    </div>
+                                </div>
                                 <div className="item">
                                     <span>Полезные ссылки</span>
                                     <a href="#">Справка</a>
                                     <a href="#">Бесплатное мобильное <br /> приложение</a>
-                                    </div>
+                                </div>
                                 <div className="item">
                                     <span>Планы Spotify</span>
                                     <a href="#">Индивидуальная <br /> подписка Spotify <br /> Premium</a>
@@ -213,15 +144,15 @@ function Layout({ children }) {
                                     <a href="#">Premium для семьи</a>
                                     <a href="#">Premium для студентов</a>
                                     <a href="#">Бесплатная версия Spotify</a>
-                                    </div>
+                                </div>
                                 <div className="items">
                                     <img className="icons" src="/insta.svg" alt="" />
                                     <img className="icons" src="/twitter.svg" alt="" />
                                     <img className="icons" src="/facebook.svg" alt="" />
-                                    </div>
+                                </div>
                             </div>
                             <div className="hr"></div>
-                             <span className="yunus">© 2024 Spotify AB</span>
+                            <span className="yunus">© 2024 Spotify AB</span>
                         </footer>
                     </div>
                 </main>

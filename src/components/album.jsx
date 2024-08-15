@@ -1,23 +1,22 @@
 import React from "react";
 
-function songs(song,playList) {
-    console.log(song);
+function BaseBlocks({type, arr}) {
     
     return (
         <>            
-            <div key={song.id} className="item">
+            <div key={arr.id} className="item" id={type}>
                 <div className="first">
-                    <img className='song_img' src={song.images[0].url} alt="" />
-                    <div className="play" onClick={()=>playList(song.tracks.items)}>
+                    <img className='song_img' src={arr.images[0].url} alt="" />
+                    <div className="play" onClick={()=>playList(arr.tracks.items)}>
                         <img src="/player.svg" alt="" />
                     </div>
                 </div>
                 <div className="second">
-                    <h2 className='song_title'>{song.name}</h2>
-                    <p className='song_autor'>{song.description}</p>
+                    <h2 className='song_title'>{arr.name}</h2>
+                    <p className='song_autor'>{arr.description}</p>
                 </div>
             </div>
         </>
     )
 }
-export default songs;
+export default BaseBlocks;

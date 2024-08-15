@@ -52,7 +52,7 @@ main {
   width: 100%;
   border-radius: 5px;
   overflow-y: auto;
-  background: linear-gradient(180deg, #159b44 0%, #121212 30%);
+  background-color: #121212;
 }
 
 .aside_part {
@@ -302,7 +302,7 @@ main {
 }
 
 header {
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -434,15 +434,6 @@ header .first {
   display: block;
 }
 
-
-header {
-  width: 95%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 50px;
-}
 
 header .first {
   display: flex;
@@ -701,6 +692,7 @@ header .first {
 .container {
   width: 100%;
   max-width: 1440px;
+  padding: 0 24px;
   margin: 0 auto;
 }
 
@@ -708,7 +700,7 @@ header .first {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
   margin-bottom: 30px;
 }
@@ -764,6 +756,7 @@ header .first {
   /* padding: 15px 15px 0px 15px; */
   position: relative;
 }
+
 .song_img {
   width: 100%;
   height: auto;
@@ -787,9 +780,11 @@ header .first {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.second{
+
+.second {
   width: 100%;
 }
+
 .play {
   background-color: #1ED760;
   position: absolute;
@@ -902,11 +897,12 @@ header .first {
 }
 
 footer {
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
   padding-top: 15px;
 
 }
+
 .cant {
   width: 100%;
   display: flex;
@@ -914,35 +910,122 @@ footer {
   color: white;
   margin-bottom: 50px;
 }
+
 .icons {
   width: 20px;
 }
+
 .items {
   display: flex;
   gap: 15px;
   align-items: flex-start;
 }
+
 .item {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
+
 .item a {
   color: rgb(169, 169, 169);
 
 }
+
 .item a:hover {
   color: white;
   text-decoration: underline;
 }
+
 .hr {
-  width: 95%;
-  margin: 0 auto;
+  width: 100%;
   background-color: rgb(94, 94, 94);
   height: 1px;
   margin-bottom: 30px;
 }
+
 .yunus {
   color: white;
-  margin-left: 2.7%;
+}
+
+.search_box {
+  position: relative;
+}
+
+.search_input {
+  width: 365px;
+  height: 48px;
+  outline: none;
+  transition: 0.3s ease;
+  border-radius: 30px;
+  color: white;
+  background-color: #242424;
+  border: 0.5px solid #464646;
+  padding: 6px 36px;
+}
+
+.search_input:hover {
+  background-color: #282828;
+}
+
+.search_input:focus {
+  border: 1px solid white;
+}
+
+.search_box::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: url('./search_icon.png') no-repeat center;
+  background-size: contain;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.search_cat_heading {
+  font-size: 32px;
+  color: white;
+  margin-bottom: 28px;
+}
+
+.search_cat_block {
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 31px;
+  padding-bottom: 40px;
+}
+
+.search_cat_item {
+  width: 100%;
+  min-height: 190px;
+  border-radius: 10px;
+  position: relative;
+  transition: 0.3s;
+  overflow: hidden;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.search_cat_categories_text {
+  color: white;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  text-overflow: ellipsis;
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.search_cat_img {
+  width: 120px;
+  position: absolute;
+  transform: rotate(30deg);
+  bottom: -20px;
+  right: -20px;
+  transition: 0.5s;
 }
