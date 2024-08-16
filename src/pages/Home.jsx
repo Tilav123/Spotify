@@ -11,7 +11,7 @@ function Home({data}) {
                     </div>
 
                     <div className="item-box">
-                        {data.length > 0 && data.map((item) => <BaseBlocks type={"playlist"} arr={item}></BaseBlocks>)}
+                        {data.length > 0 && data.map((item, index) => <BaseBlocks key={index} type={"playlist"} arr={item}></BaseBlocks>)}
                     </div>
                 </div>
             </div>
