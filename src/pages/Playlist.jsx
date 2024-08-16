@@ -55,7 +55,7 @@ function Playlist() {
                         <p>Spotify</p>
                         <span>•</span>
                         <p>{data?.tracks.items.length},</p>
-                        <p className="sec_span">примерно {data?.tracks.items.length * 30} минут</p>
+                        <p className="sec_span">примерно {(data?.tracks.items.length * 30) / 60} часов</p>
                     </div>
                 </div>
             </div>
