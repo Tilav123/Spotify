@@ -82,7 +82,7 @@ function Layout() {
 
                                 <div className="additional_features">
 
-                                    <p className="premium_text">Узнать больше о Premium</p>
+                                    <p className="premium_text" style={isSearchPage ? {display: "none"} : {display: "block"}}>Узнать больше о Premium</p>
 
                                     <p className="install_text"> <span><img src="/download.svg" alt="" /></span>  Установить приложение</p>
 
