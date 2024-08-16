@@ -43,11 +43,13 @@ function App() {
       } catch (error) {
         console.error('Error fetching playlist data:', error);
       }
-      fetch('https://rakhimv.github.io/spotify/server/janres.json')
+      fetch('https://raw.githubusercontent.com/Tilav-232007-P/SpotifyGenres/main/genres.json')
         .then(response => response.json())
         .then((result) => {
-          for (let item of result.items) {
-            setCategoriesArr((prevCategoriesArr) => [...prevCategoriesArr, item.data.data.cardRepresentation])
+          console.log(result);
+          
+          for (let item of result) {
+            setCategoriesArr((prevCategoriesArr) => [...prevCategoriesArr, item])
           }
         })
     }
@@ -59,7 +61,7 @@ function App() {
         <Route path='/' element={<Layout />}>
           <Route index element={<Home data={playlistData}></Home>} />
           <Route path='/search' element={<SearchCategories data={categories_arr}></SearchCategories>}></Route>
-          <Route path='/search/:id' element={<Search></Search>}></Route>
+          <Route path='/search/:id' element={<Search data={playlistData}></Search>}></Route>
           <Route path='/search/:id/tracks' element={<SearchTracks></SearchTracks>}></Route>
           <Route path='/search/:id/albums' element={<SearchAlbums></SearchAlbums>}></Route>
           <Route path='/search/:id/playlists' element={<SearchPlaylists></SearchPlaylists>}></Route>

@@ -1,135 +1,6 @@
 import React, { useState } from "react";
-function Search() {
-
-    const performers = [
-        {
-            id: Math.random(),
-            image: "/morgen.jpg",
-            text: "Xcho",
-            performance: "Исполнитель",
-        },
-        {
-            id: Math.random(),
-            image: "/morgen.jpg",
-            text: "Xcho",
-            performance: "Исполнитель",
-        },
-        {
-            id: Math.random(),
-            image: "/morgen.jpg",
-            text: "Xcho",
-            performance: "Исполнитель",
-        },
-        {
-            id: Math.random(),
-            image: "/morgen.jpg",
-            text: "Xcho",
-            performance: "Исполнитель",
-        },
-        {
-            id: Math.random(),
-            image: "/morgen.jpg",
-            text: "Xcho",
-            performance: "Исполнитель",
-        },
-    ];
-
-    const albums = [
-        {
-            id: Math.random(),
-            image: "/morgen.jpg",
-            text: "Shape of you",
-            year: "2017",
-            performance: "Ed Sheeran"
-        },
-        {
-            id: Math.random(),
-            image: "/morgen.jpg",
-            text: "Shape of you",
-            year: "2017",
-            performance: "Ed Sheeran"
-        },
-        {
-            id: Math.random(),
-            image: "/morgen.jpg",
-            text: "Shape of you",
-            year: "2017",
-            performance: "Ed Sheeran"
-        },
-        {
-            id: Math.random(),
-            image: "/morgen.jpg",
-            text: "Shape of you",
-            year: "2017",
-            performance: "Ed Sheeran"
-        },
-        {
-            id: Math.random(),
-            image: "/morgen.jpg",
-            text: "Shape of you",
-            year: "2017",
-            performance: "Ed Sheeran"
-        },
-    ];
-
-    function SingersPer() {
-
-        return (
-            <>
-
-                <div className="rounded_performers">
-
-                    <div className="rounded_ig_txts">
-
-                        <img src="/morgen.jpg" alt="" />
-
-                        <span>Xcho</span>
-
-                        <p>Исполнитель</p>
-
-                        <div className="play_btn">
-
-                            <img src="/player.svg" alt="" />
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </>
-        )
-
-    }
-
-    function TriagleBlocks() {
-        return (
-            <>
-
-                <div className="rounded_performers">
-
-                    <div className="quadrilateral_ig_txts">
-
-                        <img src="/morgen.jpg" alt="" />
-
-                        <span>Shape of you</span>
-
-                        <p>2017 <a href="#">Ed Sheeran</a></p>
-
-                        <div className="play_btn_sec">
-
-                            <img src="/player.svg" alt="" />
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </>
-        )
-    }
-
+import BaseBlocks from "../components/Album";
+function Search({data}) {
     return (
         <>
             <div className='search_blc'>
@@ -264,100 +135,37 @@ function Search() {
 
                 </div>
 
-                <div className="performers_blc">
-
-                    <div className="links_performers">
-
-                        <a href="#">Исполнители</a>
-
+                <div className="box">
+                    <div className="up">
+                        <h1 className='category'>Плейлисты</h1>
+                        <a className='show_all' href="#">Показать все</a>
                     </div>
 
-                    <div className="performers_flexbox">
-
-                        {performers.map((item, index) => (<SingersPer key={index} item={item}></SingersPer>))}
-
+                    <div className="item-box">
+                        {data.length > 0 && data.map((item, index) => <BaseBlocks key={index} type={"playlist"} arr={item}></BaseBlocks>)}
                     </div>
-
                 </div>
 
-                <div className="performers_blc">
-
-                    <div className="links_performers">
-
-                        <a href="#">Альбомы</a>
-
+                <div className="box">
+                    <div className="up">
+                        <h1 className='category'>Альбомы</h1>
+                        <a className='show_all' href="#">Показать все</a>
                     </div>
 
-                    <div className="performers_flexbox">
-
-                        {albums.map((item, index) => (<TriagleBlocks key={index} item={item}></TriagleBlocks>))}
-
+                    <div className="item-box">
+                        {data.length > 0 && data.map((item, index) => <BaseBlocks key={index} type={"album"} arr={item}></BaseBlocks>)}
                     </div>
-
                 </div>
 
-                <div className="performers_blc">
-
-                    <div className="links_performers">
-
-                        <a href="#">Плейлисты</a>
-
+                <div className="box">
+                    <div className="up">
+                        <h1 className='category'>Исполнители</h1>
+                        <a className='show_all' href="#">Показать все</a>
                     </div>
 
-                    <div className="performers_flexbox">
-
-                        {albums.map((item, index) => (<TriagleBlocks key={index} item={item}></TriagleBlocks>))}
-
+                    <div className="item-box">
+                        {data.length > 0 && data.map((item, index) => <BaseBlocks key={index} type={"artists"} arr={item}></BaseBlocks>)}
                     </div>
-
-                </div>
-
-                <div className="performers_blc">
-
-                    <div className="links_performers">
-
-                        <a href="#">Подкасты</a>
-
-                    </div>
-
-                    <div className="performers_flexbox">
-
-                        {albums.map((item, index) => (<TriagleBlocks key={index} item={item}></TriagleBlocks>))}
-
-                    </div>
-
-                </div>
-
-                <div className="performers_blc">
-
-                    <div className="links_performers">
-
-                        <a href="#">Выпуски</a>
-
-                    </div>
-
-                    <div className="performers_flexbox">
-
-                        {albums.map((item, index) => (<TriagleBlocks key={index} item={item}></TriagleBlocks>))}
-
-                    </div>
-
-                </div>
-
-                <div className="performers_blc">
-
-                    <div className="links_performers">
-
-                        <a href="#">Профили</a>
-
-                    </div>
-
-                    <div className="performers_flexbox">
-
-                        {performers.map((item, index) => (<SingersPer key={index} item={item}></SingersPer>))}
-
-                    </div>
-
                 </div>
 
             </div>

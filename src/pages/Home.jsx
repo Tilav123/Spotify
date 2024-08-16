@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import BaseBlocks from "../components/album";
+import BaseBlocks from "../components/Album";
 function Home({data}) {
     return (
         <>
