@@ -10,6 +10,7 @@ import SearchArtists from './pages/SearchArtists'
 import SearchPlaylists from './pages/SearchPlaylists'
 import SearchTracks from './pages/SearchTracks'
 import Search from './pages/Search'
+import Playlist from './pages/Playlist'
 function App() {
   let [playlistData, setPlaylistData] = useState([])
   let [categories_arr, setCategoriesArr] = useState([])
@@ -63,6 +64,7 @@ function App() {
           <Route path='/search/:id/albums' element={<SearchAlbums></SearchAlbums>}></Route>
           <Route path='/search/:id/playlists' element={<SearchPlaylists></SearchPlaylists>}></Route>
           <Route path='/search/:id/artists' element={<SearchArtists></SearchArtists>}></Route>
+          <Route path='/playlist/:id' element={<Playlist data={playlistData}/>}></Route>
         </Route>
       </Routes>
     </>
