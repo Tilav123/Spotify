@@ -24,25 +24,25 @@ function Layout() {
                 <aside>
                     <div className="top_aside">
                         <Link to={"/"} className={`aside_part ${location.pathname == '/' && "active_aside_part"}`}>
-                            <img src="./home_icon.png" alt="" className="aside_icon" />
-                            <img src="./home_active_icon.png" alt="" className="aside_icon aside_icon_two" />
+                            <img src="/home_icon.png" alt="" className="aside_icon" />
+                            <img src="/home_active_icon.png" alt="" className="aside_icon aside_icon_two" />
                             <p className="aside_text">Главная</p>
                         </Link>
                         <Link to={"/search"} className={`aside_part ${isSearchPage && "active_aside_part"}`}>
-                            <img src="./search_icon.png" alt="" className="aside_icon" />
-                            <img src="./search_active_icon.png" alt="" className="aside_icon aside_icon_two" />
+                            <img src="/search_icon.png" alt="" className="aside_icon" />
+                            <img src="/search_active_icon.png" alt="" className="aside_icon aside_icon_two" />
                             <p className="aside_text">Поиск</p>
                         </Link>
                     </div>
                     <div className="bottom_aside">
                         <div className="aside_part_two">
                             <div className="aside_part" onClick={hidingAside}>
-                                <img src="./library_active_icon.png" alt="" className="aside_icon library_icon_aside" />
-                                <img src="./library_icon.png" alt="" className="aside_icon aside_icon_two library_icon_aside_two" />
+                                <img src="/library_active_icon.png" alt="" className="aside_icon library_icon_aside" />
+                                <img src="/library_icon.png" alt="" className="aside_icon aside_icon_two library_icon_aside_two" />
                                 <p className="aside_text">Моя медиатека</p>
                             </div>
                             <button className="add_playlist">
-                                <img src="./plus_icon.webp" className="icon_aside invert" />
+                                <img src="/plus_icon.webp" className="icon_aside invert" />
                             </button>
                         </div>
                         <div className="aside_buttons">
@@ -52,11 +52,11 @@ function Layout() {
                         </div>
                         <div className="aside_buttons buttons_listened">
                             <button className="add_playlist">
-                                <img src="./search_icon.png" className="icon_aside search_aside_icon" />
+                                <img src="/search_icon.png" className="icon_aside search_aside_icon" />
                             </button>
                             <div className="aside_listened">
                                 <p className="">Недавно прослушано</p>
-                                <img src="./aside_unknown_shit.png" alt="" className="listened_icon" />
+                                <img src="/aside_unknown_shit.png" alt="" className="listened_icon" />
                             </div>
                         </div>
                         <div className="aside_playlists">
