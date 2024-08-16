@@ -22,7 +22,7 @@ function Track({data, index}) {
                     <div className="right">
                         <p>{data.track.album.name}</p>
                         <p>{data.track.album.release_date}</p>
-                        <p>{Math.floor(data.track.duration_ms/60)}</p>
+                        <p className="end_text_go">{Math.floor(data.track.duration_ms/60)}</p>
                     </div>
                 </div>
             </div>

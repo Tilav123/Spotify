@@ -160,7 +160,7 @@
         }
         .right p{
             width: 30%;
-            text-align: end;
+            text-align: center;
         }
         .right div{
             width: 30%;
@@ -242,7 +242,11 @@
         padding-right: 20px;
         p{
             width: 30%;
-            text-align: end;
+            text-align: center;
         }
     }
+}
+.end_text_go{
+    width: 20%;
+    text-align: end!important;
 }
