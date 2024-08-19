@@ -1,23 +1,94 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AsideItem from "../components/AsideItem";
-import queue_icon from "/queue_icon.png"
-import speaker_icon from "/speaker_icon.png"
-import volume_icon from "/volume_icon.png"
-import zoom_icon from "/zoom_icon.png"
-import photo_morgen from "/morgen.jpg"
 import { Outlet } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-
-function Layout() {
+import { useParams } from "react-router-dom";
+function Layout({ data, ind, func }) {
+    const location = useLocation();
+    const { id } = useParams();
+    const isSearchPage = location.pathname.startsWith('/search');
+    const isSearchWithId = /^\/search\/[^/]+(?:\/.*)?$/.test(location.pathname);
+    const isSearchWithOnlyId = /^\/search\/[^/]+$/.test(location.pathname);
+    const isSearchWithIdAndTracks = /^\/search\/[^/]+\/tracks$/.test(location.pathname);
+    const isSearchWithIdAndPlaylists = /^\/search\/[^/]+\/playlists$/.test(location.pathname);
+    const isSearchWithIdAndAlbums = /^\/search\/[^/]+\/albums$/.test(location.pathname);
+    const isSearchWithIdAndArtists = /^\/search\/[^/]+\/artists$/.test(location.pathname);
+    let [isLooping, setIsLooping] = useState(false)
+    let [progressPrecent, setProgressPrecent] = useState(0)
+    let [duration, setDuration] = useState(0)
+    let [currentDuration, setCurrentDuration] = useState(0)
+    let [currentVolume, setCurrentVolume] = useState(null)
     function hidingAside() {
         let aside = document.querySelector('aside')
         aside.classList.toggle("hide_aside")
     }
+    console.log(data);
 
-    const location = useLocation();
-    const isSearchPage = location.pathname.startsWith('/search');
+    const goBack = () => {
+        window.history.back();
+    };
 
+    const goForward = () => {
+        window.history.forward();
+    };
+    let [played, setPlayed] = useState(false)
+    function playsong() {
+        setPlayed(true)
+    }
+    function pausesong() {
+        setPlayed(false)
+    }
+    function BeautifulTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+    }
+    if (data.hasOwnProperty('items')) {
+        data = data.items
+    }
+    function playsongpause() {
+        const audioElement = document.querySelector('audio');
+        if (played) {
+            audioElement.pause();
+        } else {
+            audioElement.play();
+        }
+    }
+    function Loop() {
+        const audioElement = document.querySelector('audio');
+        audioElement.loop = !isLooping
+        setIsLooping(!isLooping)
+    }
+    function updateProgress(e) {
+        const { duration, currentTime } = e.target
+        const progress = (currentTime / duration) * 100
+        setProgressPrecent(progress)
+        setDuration(Math.floor(duration))
+        setCurrentDuration(Math.floor(currentTime))
+    }
+    function setProgress(e) {
+        const audioElement = document.querySelector('audio');
+        let duration = audioElement.duration
+        audioElement.currentTime = (e.target.value / 100) * duration
+        setCurrentDuration(Math.floor(audioElement.currentTime))
+    }
+    function nextSong() {
+        func(data[ind + 1].track?.preview_url || data[ind + 1].preview_url, data, ind + 1, data[ind + 1].track?.id || data[ind + 1].id)
+    }
+    function previousSong() {
+        func(data[ind - 1].track?.preview_url || data[ind - 1].preview_url, data, ind - 1, data[ind - 1].track?.id || data[ind - 1].id)
+    }
+    function randomSong() {
+        let randomNumber = Math.floor(Math.random() * (data.length - 0 + 1)) + 0;
+        func(data[randomNumber].track?.preview_url || data[randomNumber].preview_url, data, randomNumber, data[randomNumber].track?.id || data[randomNumber].id)
+    }
+    function setVolume(e) {
+        const audioElement = document.querySelector('audio');
+        audioElement.volume = e.target.value / 100
+        e.target.value = audioElement.volume * 100
+        setCurrentVolume(audioElement.volume * 100)
+    }
     return (
         <>
             <div className="body">
@@ -72,17 +143,17 @@ function Layout() {
                             <div className="first">
                                 <div className="arrows">
 
-                                    <img className="left" src="/left_arrow.svg" alt="" />
+                                    <img className="left" src="/left_arrow.svg" alt="" onClick={goBack} />
 
-                                    <img className="right" src="/left_arrow.svg" alt="" />
-                                    <div className="search_box"  style={isSearchPage ? { display: "block" } : { display: "none" }}>
-                                        <input type="text" name="" id="" className="search_input" placeholder="Что хочешь включить ?" />
+                                    <img className="right" src="/left_arrow.svg" alt="" onClick={goForward} />
+                                    <div className="search_box" style={isSearchPage ? { display: "block" } : { display: "none" }}>
+                                        <input type="text" name="" id="" className="search_input" placeholder="Что хочешь включить ?"/>
                                     </div>
                                 </div>
 
                                 <div className="additional_features">
 
-                                    <p className="premium_text" style={isSearchPage ? {display: "none"} : {display: "block"}}>Узнать больше о Premium</p>
+                                    <p className="premium_text" style={isSearchPage ? { display: "none" } : { display: "block" }}>Узнать больше о Premium</p>
 
                                     <p className="install_text"> <span><img src="/download.svg" alt="" /></span>  Установить приложение</p>
 
@@ -96,21 +167,23 @@ function Layout() {
                                 </div>
                             </div>
 
-                            {location.pathname == '/' && <div className="sec">
+                            {isSearchWithId && <div className="sec">
                                 <ul className="sec_ul">
 
-                                    <li id="um" className="cat">
-                                        <a className="cat_a" id="11" href="#">Всё</a>
+                                    <li id={isSearchWithOnlyId ? "um" : ""} className="cat">
+                                        <Link to={`/search/${id}`} className="cat_a" id="11" href="#">Всё</Link>
                                     </li>
-
-
-                                    <li className="cat">
-                                        <a className="cat_a" id="22" href="#">Музыка</a>
+                                    <li id={isSearchWithIdAndPlaylists ? "um" : ""} className="cat">
+                                        <Link to={`/search/${id}/playlists`} className="cat_a" id="22" href="#">Плейлисты</Link>
                                     </li>
-
-
-                                    <li className="cat">
-                                        <a className="cat_a" id="33" href="#">Подкасты</a>
+                                    <li id={isSearchWithIdAndAlbums ? "um" : ""} className="cat">
+                                        <Link to={`/search/${id}/albums`} className="cat_a" id="33" href="#">Альбомы</Link>
+                                    </li>
+                                    <li id={isSearchWithIdAndTracks ? "um" : ""} className="cat">
+                                        <Link to={`/search/${id}/tracks`} className="cat_a" id="33" href="#">Песни</Link>
+                                    </li>
+                                    <li id={isSearchWithIdAndArtists? "um" : ""} className="cat">
+                                        <Link to={`/search/${id}/artists`} className="cat_a" id="33" href="#">Артисты</Link>
                                     </li>
                                 </ul>
                             </div>}
@@ -159,69 +232,45 @@ function Layout() {
             </div>
 
             <div className="player">
-
-                <div className="playlist_blc">
-
-                    <img src={photo_morgen} alt="" />
-
-                    <div className="music_titles">
-
-                        <p>Play It Safe</p>
-
-                        <p>Julia Wolf</p>
-
+                <div className="player_hidden" style={data.length > 0 ? { display: "none" } : { display: "block" }}></div>
+                <div className="player_left">
+                    <img src={data.length > 0
+                        ? (data[ind].track?.album?.images[0]?.url || data[ind]?.album?.images[0]?.url || "/notFound.png")
+                        : ""} className="player_left_img" />
+                    <div className="player_left_text_box">
+                        <p className="player_song_name">{data.length > 0 ? data[ind].track?.name || data[ind].name : ""}</p>
+                        <p className="player_song_artist">{data.length > 0 ? data[ind].track?.artists[0].name || data[ind].artists[0].name : ""}</p>
                     </div>
-
+                    <img src="/plus.svg" className="player_icon_tilav" style={{ padding: "4px" }} />
                 </div>
-
-                <div className="music-player">
-
-                    <div className="msc_player_icons">
-
-                        <i className='bx bx-shuffle'></i>
-
-                        <i className='bx bx-skip-previous'></i>
-
-                        <i className='bx bx-play'></i>
-
-                        <i className='bx bx-skip-next'></i>
-
-                        <i className='bx bx-refresh'></i>
-
+                <div className="player_center">
+                    <div className="player_center_interface">
+                        <img src="/random_button.png" alt="" className="player_icon_tilav" onClick={randomSong} />
+                        <img src="/back_song.png" alt="" className="player_icon_tilav" onClick={previousSong} />
+                        <img src={played ? "/play.png" : "/stop.png"} alt="" className="player_icon_tilav normal_size_img_player" onClick={playsongpause} />
+                        <img src="/forward_song.png" alt="" className="player_icon_tilav" onClick={nextSong} />
+                        <img src={isLooping ? "/loop_active.svg" : "/loop.png"} alt="" className="player_icon_tilav" onClick={Loop} />
                     </div>
-
-                    <div className="line_music_plr">
-
-                        <p>1:06</p>
-
-                        <div className="player_play">
-
-                            <div className="line_music"></div>
-
+                    <div className="player_center_inteface_duration">
+                        <p className="time_duration">{isNaN(currentDuration) ? "0:00" : BeautifulTime(currentDuration)}</p>
+                        <div className="player_range_duration">
+                            <div className="range_track" style={{ width: `${progressPrecent}%` }}></div>
+                            <input type="range" name="" id="" value={progressPrecent} min={0} max={100} className="duration_range" onInput={setProgress} />
                         </div>
-
-                        <p>3:20</p>
-
+                        <p className="time_duration">{isNaN(duration) ? "0:00" : BeautifulTime(duration)}</p>
                     </div>
-
                 </div>
-
-                <div className="player_icons">
-
-                    <img src={queue_icon} alt="" />
-
-                    <img src={speaker_icon} alt="" />
-
-                    <img src={volume_icon} alt="" />
-
-                    <div className="line_player"></div>
-
-                    <img src={zoom_icon} alt="" />
-
+                <div className="player_right">
+                    <img src="/download_icon.png" alt="" className="player_icon_tilav mini_size_img_player" />
+                    <img src="/volume_icon.png" alt="" className="player_icon_tilav mini_size_img_player" />
+                    <div className="player_range_duration" style={{ width: "90px" }}>
+                        <div className="range_track" style={currentVolume == null ? { width: "100%" } : { width: `${currentVolume}%` }}></div>
+                        <input type="range" name="" id="" min={0} max={100} className="duration_range" onInput={setVolume} defaultValue={100} />
+                    </div>
+                    <img src="/full_screen.png" alt="" className="player_icon_tilav" />
                 </div>
-
             </div>
-            <audio src=""></audio>
+            <audio src="" onPlay={playsong} onPause={pausesong} onTimeUpdate={updateProgress} onEnded={nextSong}></audio>
         </>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
-import Track from "../components/Track";
+import TrackAlbum from "../components/TrackAlbum";
 import { useLocation, useParams } from "react-router-dom";
-function Playlist({ func,currentIndex,currentTrackId }) {
+function AlbumPage({ func,currentIndex,currentTrackId }) {
     let [data, setData] = useState();
     const [dominantColor, setDominantColor] = useState('');
     const { id } = useParams();
@@ -23,14 +23,14 @@ function Playlist({ func,currentIndex,currentTrackId }) {
     useEffect(() => {
         const fetchPlaylistData = async () => {
             try {
-                const playlistResponse = await fetch(`https://api.spotify.com/v1/playlists/${id}`, {
+                const playlistResponse = await fetch(`https://api.spotify.com/v1/albums/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     },
                 });
 
                 let playlist = await playlistResponse.json();
-                playlist.tracks.items = playlist.tracks.items.filter(item => item.track.preview_url);
+                playlist.tracks.items = playlist.tracks.items.filter(item => item.preview_url);
                 setData(playlist);
                 if (playlist.images.length > 0) {
                     colors_dominant(playlist.images[0].url, setDominantColor);
@@ -55,7 +55,7 @@ function Playlist({ func,currentIndex,currentTrackId }) {
                 <div className="right">
                     <p>{data?.type}</p>
                     <h1>{data?.name}</h1>
-                    <p className="descr">{data?.description}</p>
+                    <p className="descr">{"The hits of tomorrow are on Spotify today."}</p>
                     <div className="litle_box">
                         <img src="/logo.png" alt="" />
                         <p>Spotify</p>
@@ -103,7 +103,7 @@ function Playlist({ func,currentIndex,currentTrackId }) {
                     </div>
                 </div>
                 {data?.tracks?.items.map((item, index) => (
-                    <Track key={index} data={item} index={index} func={func} full_arr={data} currentIndex={currentIndex} currentTrackId={currentTrackId}/>
+                    <TrackAlbum key={index} data={item} index={index} func={func} full_arr={data} currentIndex={currentIndex} currentTrackId={currentTrackId}/>
                 ))
                 }
             </div>
@@ -111,4 +111,4 @@ function Playlist({ func,currentIndex,currentTrackId }) {
     );
 }
 
-export default Playlist;
+export default AlbumPage;

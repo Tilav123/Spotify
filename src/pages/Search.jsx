@@ -1,6 +1,40 @@
 import React, { useState } from "react";
 import BaseBlocks from "../components/Album";
-function Search({data}) {
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+function Search() {
+    let token = localStorage.getItem('token')
+    const { id } = useParams();
+    let [dataSongs,setDataSongs] = useState([])
+    let [dataArtists,setDataArtists] = useState([])
+    let [dataPlaylists,setDataPlaylists] = useState([])
+    let [dataAlbums,setDataAlbums] = useState([])
+    useEffect(() => {
+        const fetchPlaylistData = async () => {
+            try {
+                fetch('https://api.spotify.com/v1/search?q=' + id + '*&type=album,artist,playlist,track&limit=50&offset=0&market=UZ', {
+                    authority: "api.spotify.com",
+                    method: "GET",
+                    path: "/v1/search?q=ona*&type=album,artist,playlist,track&limit=50&offset=0&market=UZ",
+                    scheme: "https",
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': "application/json; charset=utf-8"
+                    }
+                })
+                    .then(response => response.json()) 
+                    .then((result) => {
+                        setDataAlbums(result.albums.items)
+                        setDataArtists(result.artists.items)
+                        setDataPlaylists(result.playlists.items)
+                        setDataSongs(result.tracks.items)
+                    })
+            } catch (error) {
+                console.error('Error fetching playlist data:', error);
+            }
+        };
+        fetchPlaylistData();
+    }, []);
     return (
         <>
             <div className='search_blc'>
@@ -66,7 +100,6 @@ function Search({data}) {
                                 </div>
 
                                 <div className="music_duration">
-
                                     <span>3:53</span>
 
                                 </div>
@@ -142,7 +175,7 @@ function Search({data}) {
                     </div>
 
                     <div className="item-box">
-                        {data.length > 0 && data.map((item, index) => <BaseBlocks key={index} type={"playlist"} arr={item}></BaseBlocks>)}
+                        {dataPlaylists.length > 0 && dataPlaylists.map((item, index) => <BaseBlocks key={index} type={"playlist"} arr={item}></BaseBlocks>)}
                     </div>
                 </div>
 
@@ -153,7 +186,7 @@ function Search({data}) {
                     </div>
 
                     <div className="item-box">
-                        {data.length > 0 && data.map((item, index) => <BaseBlocks key={index} type={"album"} arr={item}></BaseBlocks>)}
+                        {dataAlbums.length > 0 && dataAlbums.map((item, index) => <BaseBlocks key={index} type={"album"} arr={item}></BaseBlocks>)}
                     </div>
                 </div>
 
@@ -164,7 +197,7 @@ function Search({data}) {
                     </div>
 
                     <div className="item-box">
-                        {data.length > 0 && data.map((item, index) => <BaseBlocks key={index} type={"artists"} arr={item}></BaseBlocks>)}
+                        {dataArtists.length > 0 && dataArtists.map((item, index) => <BaseBlocks key={index} type={"artists"} arr={item}></BaseBlocks>)}
                     </div>
                 </div>
 
