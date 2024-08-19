@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-function SearchTracks() {
+import TrackArtist from "../components/TrackArtist";
+function SearchTracks({ func,currentIndex,currentTrackId }) {
     const { id } = useParams();
     let [data,setData] = useState([])
     let token = localStorage.getItem('token')
@@ -20,7 +21,8 @@ function SearchTracks() {
                 })
                     .then(response => response.json()) 
                     .then((result) => {
-                        setData(result.tracks)
+                        console.log(result.tracks.items);
+                        setData(result)
                     }
                     )
             } catch (error) {
@@ -51,7 +53,9 @@ function SearchTracks() {
                         <div className="midle_line"></div>
                     </div>
                 </div>
-                
+                {data?.tracks?.items.map((item, index) => (
+                    <TrackArtist key={index} data={item} index={index} func={func} full_arr={data} currentIndex={currentIndex} currentTrackId={currentTrackId}/>
+                ))}
             </div>
         </>
     )

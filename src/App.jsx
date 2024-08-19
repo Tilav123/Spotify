@@ -95,7 +95,7 @@ function App() {
           <Route index element={<Home data={playlistData}></Home>} />
           <Route path='/search' element={<SearchCategories data={categories_arr} />}></Route>
           <Route path='/search/:id' element={<Search data={playlistData} />}></Route>
-          <Route path='/search/:id/tracks' element={<SearchTracks />}></Route>
+          <Route path='/search/:id/tracks' element={<SearchTracks func={GiveData} currentIndex={currentIndex} currentTrackId={currentTrackId}/>}></Route>
           <Route path='/search/:id/albums' element={<SearchAlbums />}></Route>
           <Route path='/search/:id/playlists' element={<SearchPlaylists />}></Route>
           <Route path='/search/:id/artists' element={<SearchArtists />}></Route>
