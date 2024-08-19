@@ -33,6 +33,25 @@ function SearchTracks() {
         <>
             <div className=''>
                 {/* Avaz */}
+                <div className="trek_midle">
+                    <div className="trek_midle_box">
+                        <div className="midle_box_up">
+                            <div className="left">
+                                <p>#</p>
+                                <p>Название</p>
+                            </div>
+                            <div className="right">
+                                <p></p>
+                                <p>Альбом</p>
+                                <div>
+                                    <img className="time" src="/time.svg" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="midle_line"></div>
+                    </div>
+                </div>
+                
             </div>
         </>
     )

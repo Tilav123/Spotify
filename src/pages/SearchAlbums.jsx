@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
+import BaseBlocks from "../components/Album";
 function SearchAlbums() {
     const { id } = useParams();
-    let [data,setData] = useState([])
+    let [data, setData] = useState([])
     let token = localStorage.getItem('token')
     useEffect(() => {
         const fetchPlaylistData = async () => {
@@ -18,9 +19,9 @@ function SearchAlbums() {
                         'Content-Type': "application/json; charset=utf-8"
                     }
                 })
-                    .then(response => response.json()) 
+                    .then(response => response.json())
                     .then((result) => {
-                        setData(result.albums)
+                        setData(result.albums.items)
                     }
                     )
             } catch (error) {
@@ -32,8 +33,14 @@ function SearchAlbums() {
     return (
         <>
             <div className=''>
-                {/* Yunus */}
+                <div className="box">
+                    <div className="item-box" style={{ flexWrap: "wrap", justifyContent: "space_between", gap: "8pxpx" }}>
+                        {data.map((item, index) => <BaseBlocks key={index} type={"album"} arr={item}></BaseBlocks>)}
+                    </div>
+                </div>
+
             </div>
+        
         </>
     )
 }

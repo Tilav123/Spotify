@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
+import BaseBlocks from "../components/Album";
 function SearchArtists() {
     const { id } = useParams();
     let [data,setData] = useState([])
@@ -20,7 +21,7 @@ function SearchArtists() {
                 })
                     .then(response => response.json()) 
                     .then((result) => {
-                        setData(result.artists)
+                        setData(result.artists.items)
                     }
                     )
             } catch (error) {
@@ -32,7 +33,12 @@ function SearchArtists() {
     return (
         <>
             <div className=''>
-                {/* Avaz */}
+                <div className="box">
+                    <div className="item-box" style={{ flexWrap: "wrap", justifyContent: "space_between", gap: "8pxpx" }}>
+                        {data.map((item, index) => <BaseBlocks key={index} type={"artist"} arr={item}></BaseBlocks>)}
+                    </div>
+                </div>
+
             </div>
         </>
     )
