@@ -919,6 +919,8 @@ header .first {
 footer {
   width: 100%;
   margin: 0 auto;
+  position: relative;
+  z-index: 5;
   padding-top: 15px;
 
 }
@@ -1528,4 +1530,44 @@ footer {
 
 .player_range_duration:hover .range_track {
   background-color: #1ED760;
+}
+
+.genres_main_block {
+  width: 100%;
+  height: 186px;
+}
+.background_of_genre{
+  width: 100%;
+  height: 700px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+
+.genres_main_block h1 {
+  color: #fff;
+  font-size: 96px;
+  font-weight: 700;
+  z-index: 1;
+  position: relative;
+  user-select: none;
+
+}
+.genre_playlists{
+  width: 100%;
+  padding-top: 32px;
+  position: relative;
+  z-index: 3;
+}
+.genre_playlist_background{
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #121212;
+  opacity: 30%;
+  z-index: 1;
+  top: 250px;
+  left: 0;
 }
