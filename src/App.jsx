@@ -102,7 +102,7 @@ function App() {
           <Route path='/playlist/:id' element={<Playlist func={GiveData} currentIndex={currentIndex} currentTrackId={currentTrackId}/>}></Route>
           <Route path='/album/:id' element={<AlbumPage func={GiveData} currentIndex={currentIndex} currentTrackId={currentTrackId}/>}></Route>
           <Route path='/artist/:id' element={<ArtistPage func={GiveData} currentIndex={currentIndex} currentTrackId={currentTrackId}/>}></Route>
-          <Route path='/genres/:id' element={<Genres/>}></Route>
+          <Route path='/genre/:id' element={<Genres/>}></Route>
         </Route>
       </Routes>
     </>
