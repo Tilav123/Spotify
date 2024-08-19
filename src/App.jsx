@@ -91,7 +91,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<Layout data={current_playing_data} ind={currentIndex} func={GiveData}/>}>
+        <Route path='/' element={<Layout data={current_playing_data} ind={currentIndex} func={GiveData} user={userinfo}/>}>
           <Route index element={<Home data={playlistData}></Home>} />
           <Route path='/search' element={<SearchCategories data={categories_arr} />}></Route>
           <Route path='/search/:id' element={<Search data={playlistData} />}></Route>

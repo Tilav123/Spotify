@@ -4,9 +4,10 @@ import { Outlet } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
-function Layout({ data, ind, func }) {
+function Layout({ data, ind, func, user }) {
     const location = useLocation();
     const { id } = useParams();
+    console.log(user);
     const isSearchPage = location.pathname.startsWith('/search');
     const isSearchWithId = /^\/search\/[^/]+(?:\/.*)?$/.test(location.pathname);
     const isSearchWithOnlyId = /^\/search\/[^/]+$/.test(location.pathname);
@@ -147,7 +148,7 @@ function Layout({ data, ind, func }) {
 
                                     <img className="right" src="/left_arrow.svg" alt="" onClick={goForward} />
                                     <div className="search_box" style={isSearchPage ? { display: "block" } : { display: "none" }}>
-                                        <input type="text" name="" id="" className="search_input" placeholder="Что хочешь включить ?"/>
+                                        <input type="text" name="" id="" className="search_input" placeholder="Что хочешь включить ?" />
                                     </div>
                                 </div>
 
@@ -162,7 +163,7 @@ function Layout({ data, ind, func }) {
                                     </div>
 
                                     <div className="person">
-                                        <img src="/person.svg" alt="" />
+                                        <img src={user && user.images && user.images[0] ? user.images[0].url : "/person.svg"} alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -182,7 +183,7 @@ function Layout({ data, ind, func }) {
                                     <li id={isSearchWithIdAndTracks ? "um" : ""} className="cat">
                                         <Link to={`/search/${id}/tracks`} className="cat_a" id="33" href="#">Песни</Link>
                                     </li>
-                                    <li id={isSearchWithIdAndArtists? "um" : ""} className="cat">
+                                    <li id={isSearchWithIdAndArtists ? "um" : ""} className="cat">
                                         <Link to={`/search/${id}/artists`} className="cat_a" id="33" href="#">Артисты</Link>
                                     </li>
                                 </ul>
