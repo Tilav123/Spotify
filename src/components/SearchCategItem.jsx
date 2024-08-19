@@ -5,7 +5,7 @@ function SearchCategItem({data}) {
     
     return (
         <>
-            <Link className='search_cat_item' style={{background: data.backgroundColor}} id={data.id} to={`/genres/${data.id}`}>
+            <Link className='search_cat_item' style={{background: data.backgroundColor}} id={data.id} to={`/genre/${data.id}`}>
                 <p className="search_cat_categories_text">{data.title}</p>
                 <img src={data.img} alt="" className="search_cat_img" />
             </Link>
