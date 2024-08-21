@@ -30,7 +30,7 @@ function SearchTracks({ func,currentIndex,currentTrackId }) {
             }
         };
         fetchPlaylistData();
-    }, []);
+    }, [id]);
     return (
         <>
             <div className=''>

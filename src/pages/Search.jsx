@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import BaseBlocks from "../components/Album";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 function Search() {
     let token = localStorage.getItem('token')
     const { id } = useParams();
@@ -24,6 +25,8 @@ function Search() {
                 })
                     .then(response => response.json()) 
                     .then((result) => {
+                        console.log(result.playlists.items[0]);
+                        
                         setDataAlbums(result.albums.items)
                         setDataArtists(result.artists.items)
                         setDataPlaylists(result.playlists.items)
@@ -34,7 +37,7 @@ function Search() {
             }
         };
         fetchPlaylistData();
-    }, []);
+    }, [id]);
     return (
         <>
             <div className='search_blc'>
@@ -45,21 +48,19 @@ function Search() {
 
                         <h2 className="search_texts">Лучший результат</h2>
 
-                        <div className="first_big_blc">
+                        <Link className="first_big_blc" to={`/playlist/${dataPlaylists[0]?.id}`} style={{display: "block"}}>
 
                             <div className="search_image_search">
 
-                                <img src="/morgen.jpg" alt="" />
+                                <img src={dataPlaylists[0]?.images[0]?.url} alt="" />
 
-                                <h1>Shape of you</h1>
+                                <h1>{dataPlaylists[0]?.name}</h1>
 
                             </div>
 
                             <div className="track_search">
 
-                                <span>Трек</span>
-
-                                <a href="#">Ed Sheeran</a>
+                                <span>Плейлист</span>
 
                             </div>
 
@@ -69,7 +70,7 @@ function Search() {
 
                             </div>
 
-                        </div>
+                        </Link>
 
                     </div>
 

@@ -4,8 +4,11 @@ import { Outlet } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { useDebounce } from "@uidotdev/usehooks";
+import { useNavigate } from "react-router-dom";
 function Layout({ data, ind, func, user }) {
     const location = useLocation();
+    let pathSegments;
     const { id } = useParams();
     console.log(user);
     const isSearchPage = location.pathname.startsWith('/search');
@@ -15,6 +18,12 @@ function Layout({ data, ind, func, user }) {
     const isSearchWithIdAndPlaylists = /^\/search\/[^/]+\/playlists$/.test(location.pathname);
     const isSearchWithIdAndAlbums = /^\/search\/[^/]+\/albums$/.test(location.pathname);
     const isSearchWithIdAndArtists = /^\/search\/[^/]+\/artists$/.test(location.pathname);
+    if (isSearchPage) {
+        pathSegments = location.pathname.split('/');
+    }
+    const [query,setQuery] = useState(id);
+    const debouncedSearchTerm = useDebounce(query, 600);
+    const navigate = useNavigate();
     let [isLooping, setIsLooping] = useState(false)
     let [progressPrecent, setProgressPrecent] = useState(0)
     let [duration, setDuration] = useState(0)
@@ -25,7 +34,13 @@ function Layout({ data, ind, func, user }) {
         aside.classList.toggle("hide_aside")
     }
     console.log(data);
-
+    useEffect(()=>{
+        if(query){
+            navigate(`/search/${query}${pathSegments[3] ? "/" + pathSegments[3] : ""}`)
+        }else if(isSearchPage && query == ""){
+            navigate(`/search`)
+        }
+    },[debouncedSearchTerm])
     const goBack = () => {
         window.history.back();
     };
@@ -100,7 +115,7 @@ function Layout({ data, ind, func, user }) {
                             <img src="/home_active_icon.png" alt="" className="aside_icon aside_icon_two" />
                             <p className="aside_text">Главная</p>
                         </Link>
-                        <Link to={"/search"} className={`aside_part ${isSearchPage && "active_aside_part"}`}>
+                        <Link to={query ? `/search/${query}` : "/search"} className={`aside_part ${isSearchPage && "active_aside_part"}`}>
                             <img src="/search_icon.png" alt="" className="aside_icon" />
                             <img src="/search_active_icon.png" alt="" className="aside_icon aside_icon_two" />
                             <p className="aside_text">Поиск</p>
@@ -148,7 +163,7 @@ function Layout({ data, ind, func, user }) {
 
                                     <img className="right" src="/left_arrow.svg" alt="" onClick={goForward} />
                                     <div className="search_box" style={isSearchPage ? { display: "block" } : { display: "none" }}>
-                                        <input type="text" name="" id="" className="search_input" placeholder="Что хочешь включить ?" />
+                                        <input type="text" name="" id="" className="search_input" placeholder="Что хочешь включить ?" value={query} onChange={(e)=>setQuery(e.target.value)}/>
                                     </div>
                                 </div>
 

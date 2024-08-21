@@ -692,6 +692,9 @@ header .first {
 
 .person img {
   width: 21px;
+  height: 21px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .show {
@@ -1106,6 +1109,10 @@ footer {
   color: #fff;
   font-size: 32px;
   font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
   line-height: normal;
 }
 

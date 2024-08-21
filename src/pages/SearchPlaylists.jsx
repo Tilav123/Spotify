@@ -29,7 +29,7 @@ function SearchPlaylists() {
             }
         };
         fetchPlaylistData();
-    }, []);
+    }, [id]);
 
     console.log(data);
 

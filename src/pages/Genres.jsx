@@ -44,8 +44,7 @@ function Genres() {
                         <h1 className='category'>Жанры для вас - {data.message}</h1>
                         <a className='show_all' href="#">Показать все</a>
                     </div>
-
-                    <div className="item-box" style={{flexWrap: "wrap", justifyContent: "space_between", gap: "8pxpx"}}>
+                    <div className="item-box" style={{flexWrap: "wrap", justifyContent: "space_between", gap: "8px"}}>
                         {data_version_two.length > 0 && data_version_two.map((item, index) => <BaseBlocks key={index} type={"playlist"} arr={item}></BaseBlocks>)}
                     </div>
                 </div>

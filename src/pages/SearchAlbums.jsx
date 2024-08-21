@@ -29,7 +29,7 @@ function SearchAlbums() {
             }
         };
         fetchPlaylistData();
-    }, []);
+    }, [id]);
     return (
         <>
             <div className=''>

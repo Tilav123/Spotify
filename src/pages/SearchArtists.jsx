@@ -29,7 +29,7 @@ function SearchArtists() {
             }
         };
         fetchPlaylistData();
-    }, []);
+    }, [id]);
     return (
         <>
             <div className=''>
