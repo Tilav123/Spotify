@@ -16,7 +16,7 @@ function Home({ data }) {
     return (
         <>
 
-            {skeleton ? <div>
+            {/* {skeleton ? <div>
                     <div className="box">
                         <div className="up">
                             <h1 className='category'>Только для вас</h1>
@@ -29,7 +29,9 @@ function Home({ data }) {
                     </div>
                 </div>
                 :
-                <div>
+                
+            } */}
+            <div>
                     <div className="box">
                         <div className="up">
                             <h1 className='category'>Только для вас</h1>
@@ -41,7 +43,6 @@ function Home({ data }) {
                         </div>
                     </div>
                 </div>
-            }
         </>
     )
 }
