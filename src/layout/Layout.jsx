@@ -29,6 +29,7 @@ function Layout({ data, ind, func, user }) {
     let [duration, setDuration] = useState(0)
     let [currentDuration, setCurrentDuration] = useState(0)
     let [currentVolume, setCurrentVolume] = useState(null)
+    let [isdisplay, setIsdisplay] = useState(false)
     function hidingAside() {
         let aside = document.querySelector('aside')
         aside.classList.toggle("hide_aside")
@@ -116,6 +117,9 @@ function Layout({ data, ind, func, user }) {
         }, 1000)
     }, [])
 
+    function set_dis(){
+        setIsdisplay(!isdisplay)
+    }
     return (
         <>
 
@@ -191,8 +195,19 @@ function Layout({ data, ind, func, user }) {
                                         <img src="/bell.svg" alt="" />
                                     </div>
 
-                                    <div className="person">
+                                    <div onClick={set_dis} className="person">
                                         <img src={user && user.images && user.images[0] ? user.images[0].url : "/person.svg"} alt="" />
+                                    </div>
+                                </div>
+
+                                <div style={isdisplay ? {display: "flex"} : {display: "none"}} className="modal">
+                                    <div className="modal_dialog">
+                                        <ul>
+                                            <li><Link>Профиль</Link></li>
+                                            <li><Link>Настройки</Link></li>
+                                            <li className="line"></li>
+                                            <li><Link>Выйти</Link></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
