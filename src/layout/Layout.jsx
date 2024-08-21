@@ -203,10 +203,10 @@ function Layout({ data, ind, func, user }) {
                                 <div style={isdisplay ? {display: "flex"} : {display: "none"}} className="modal">
                                     <div className="modal_dialog">
                                         <ul>
-                                            <li><Link>Профиль</Link></li>
+                                            <li><Link to={"/user"}>Профиль</Link></li>
                                             <li><Link>Настройки</Link></li>
                                             <li className="line"></li>
-                                            <li><Link>Выйти</Link></li>
+                                            <li style={{color: "white"}}>Выйти</li>
                                         </ul>
                                     </div>
                                 </div>
