@@ -20,7 +20,7 @@ function Layout({ data, ind, func, user }) {
     let [duration, setDuration] = useState(0)
     let [currentDuration, setCurrentDuration] = useState(0)
     let [currentVolume, setCurrentVolume] = useState(null)
-    let [isdisplay, setIsdisplay] = useState("none")
+    let [isdisplay, setIsdisplay] = useState(false)
     function hidingAside() {
         let aside = document.querySelector('aside')
         aside.classList.toggle("hide_aside")
@@ -92,8 +92,7 @@ function Layout({ data, ind, func, user }) {
         setCurrentVolume(audioElement.volume * 100)
     }
     function set_dis(){
-        setIsdisplay("flex")
-        
+        setIsdisplay(!isdisplay)
     }
     return (
         <>
@@ -172,7 +171,7 @@ function Layout({ data, ind, func, user }) {
                                     </div>
                                 </div>
 
-                                <div style={{display: isdisplay}} className="modal">
+                                <div style={isdisplay ? {display: "flex"} : {display: "none"}} className="modal">
                                     <div className="modal_dialog">
                                         <ul>
                                             <li><Link>Профиль</Link></li>
