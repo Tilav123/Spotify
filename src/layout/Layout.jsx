@@ -105,8 +105,22 @@ function Layout({ data, ind, func, user }) {
         e.target.value = audioElement.volume * 100
         setCurrentVolume(audioElement.volume * 100)
     }
+
+    const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        setLoading(true)
+
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
+    }, [])
+
     return (
         <>
+
+            {loading ? <div className="preloader"><img src="/logo.png" alt="" /></div> : <div></div>}
+
             <div className="body">
                 <aside>
                     <div className="top_aside">
@@ -169,9 +183,9 @@ function Layout({ data, ind, func, user }) {
 
                                 <div className="additional_features">
 
-                                    <p className="premium_text" style={isSearchPage ? { display: "none" } : { display: "block" }}>Узнать больше о Premium</p>
+                                    <p className="premium_text" style={isSearchPage ? { display: "none" } : { display: "block" }}><Link to={"/premium"} style={{color: "#000"}}>Узнать больше о Premium</Link></p>
 
-                                    <p className="install_text"> <span><img src="/download.svg" alt="" /></span>  Установить приложение</p>
+                                    <p className="install_text"> <span><img src="/download.svg" alt="" /></span><a href="https://open.spotify.com/download">Установить приложение</a></p>
 
                                     <div className="bell">
                                         <img src="/bell.svg" alt="" />

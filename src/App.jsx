@@ -14,6 +14,8 @@ import AlbumPage from './pages/AlbumPage';
 import ArtistPage from './pages/ArtistPage';
 import Genres from './pages/Genres';
 import User from './pages/User';
+import Premium from './pages/Premium';
+
 function App() {
   let [playlistData, setPlaylistData] = useState([]);
   let [categories_arr, setCategoriesArr] = useState([]);
@@ -107,6 +109,7 @@ function App() {
           <Route path='/artist/:id' element={<ArtistPage func={GiveData} currentIndex={currentIndex} currentTrackId={currentTrackId}/>}></Route>
           <Route path='/genre/:id' element={<Genres/>}></Route>
           <Route path='/user' element={<User data={userinfo}/>}></Route>
+          <Route path='/premium' element={<Premium/>}></Route>
         </Route>
       </Routes>
     </>
