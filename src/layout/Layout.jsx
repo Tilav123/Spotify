@@ -4,8 +4,11 @@ import { Outlet } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { useDebounce } from "@uidotdev/usehooks";
+import { useNavigate } from "react-router-dom";
 function Layout({ data, ind, func, user }) {
     const location = useLocation();
+    let pathSegments;
     const { id } = useParams();
     console.log(user);
     const isSearchPage = location.pathname.startsWith('/search');
@@ -15,6 +18,12 @@ function Layout({ data, ind, func, user }) {
     const isSearchWithIdAndPlaylists = /^\/search\/[^/]+\/playlists$/.test(location.pathname);
     const isSearchWithIdAndAlbums = /^\/search\/[^/]+\/albums$/.test(location.pathname);
     const isSearchWithIdAndArtists = /^\/search\/[^/]+\/artists$/.test(location.pathname);
+    if (isSearchPage) {
+        pathSegments = location.pathname.split('/');
+    }
+    const [query,setQuery] = useState(id);
+    const debouncedSearchTerm = useDebounce(query, 600);
+    const navigate = useNavigate();
     let [isLooping, setIsLooping] = useState(false)
     let [progressPrecent, setProgressPrecent] = useState(0)
     let [duration, setDuration] = useState(0)
@@ -26,11 +35,16 @@ function Layout({ data, ind, func, user }) {
         aside.classList.toggle("hide_aside")
     }
     console.log(data);
-
+    useEffect(()=>{
+        if(query){
+            navigate(`/search/${query}${pathSegments[3] ? "/" + pathSegments[3] : ""}`)
+        }else if(isSearchPage && query == ""){
+            navigate(`/search`)
+        }
+    },[debouncedSearchTerm])
     const goBack = () => {
         window.history.back();
     };
-
     const goForward = () => {
         window.history.forward();
     };
@@ -91,11 +105,25 @@ function Layout({ data, ind, func, user }) {
         e.target.value = audioElement.volume * 100
         setCurrentVolume(audioElement.volume * 100)
     }
+
+    const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        setLoading(true)
+
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
+    }, [])
+
     function set_dis(){
         setIsdisplay(!isdisplay)
     }
     return (
         <>
+
+            {loading ? <div className="preloader"><img src="/logo.png" alt="" /></div> : <div></div>}
+
             <div className="body">
                 <aside>
                     <div className="top_aside">
@@ -104,7 +132,7 @@ function Layout({ data, ind, func, user }) {
                             <img src="/home_active_icon.png" alt="" className="aside_icon aside_icon_two" />
                             <p className="aside_text">Главная</p>
                         </Link>
-                        <Link to={"/search"} className={`aside_part ${isSearchPage && "active_aside_part"}`}>
+                        <Link to={query ? `/search/${query}` : "/search"} className={`aside_part ${isSearchPage && "active_aside_part"}`}>
                             <img src="/search_icon.png" alt="" className="aside_icon" />
                             <img src="/search_active_icon.png" alt="" className="aside_icon aside_icon_two" />
                             <p className="aside_text">Поиск</p>
@@ -152,15 +180,15 @@ function Layout({ data, ind, func, user }) {
 
                                     <img className="right" src="/left_arrow.svg" alt="" onClick={goForward} />
                                     <div className="search_box" style={isSearchPage ? { display: "block" } : { display: "none" }}>
-                                        <input type="text" name="" id="" className="search_input" placeholder="Что хочешь включить ?" />
+                                        <input type="text" name="" id="" className="search_input" placeholder="Что хочешь включить ?" value={query} onChange={(e)=>setQuery(e.target.value)}/>
                                     </div>
                                 </div>
 
                                 <div className="additional_features">
 
-                                    <p className="premium_text" style={isSearchPage ? { display: "none" } : { display: "block" }}>Узнать больше о Premium</p>
+                                    <p className="premium_text" style={isSearchPage ? { display: "none" } : { display: "block" }}><Link to={"/premium"} style={{color: "#000"}}>Узнать больше о Premium</Link></p>
 
-                                    <p className="install_text"> <span><img src="/download.svg" alt="" /></span>  Установить приложение</p>
+                                    <p className="install_text"> <span><img src="/download.svg" alt="" /></span><a href="https://open.spotify.com/download">Установить приложение</a></p>
 
                                     <div className="bell">
                                         <img src="/bell.svg" alt="" />
@@ -174,10 +202,10 @@ function Layout({ data, ind, func, user }) {
                                 <div style={isdisplay ? {display: "flex"} : {display: "none"}} className="modal">
                                     <div className="modal_dialog">
                                         <ul>
-                                            <li><Link>Профиль</Link></li>
+                                            <li><Link to={"/user"}>Профиль</Link></li>
                                             <li><Link>Настройки</Link></li>
                                             <li className="line"></li>
-                                            <li><Link>Выйти</Link></li>
+                                            <li style={{color: "white"}}>Выйти</li>
                                         </ul>
                                     </div>
                                 </div>

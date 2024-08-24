@@ -13,6 +13,8 @@ import Playlist from './pages/Playlist';
 import AlbumPage from './pages/AlbumPage';
 import ArtistPage from './pages/ArtistPage';
 import Genres from './pages/Genres';
+import User from './pages/User';
+import Premium from './pages/Premium';
 
 function App() {
   let [playlistData, setPlaylistData] = useState([]);
@@ -85,6 +87,9 @@ function App() {
     console.log(data);
     setCurrentIndex(currentIndex)
     setCurrentTrackId(currentTrackId)
+    if (!link) {
+        link = '/unavailableSong.mp3'
+    }
     audio.src = link
     audio.play()
   }
@@ -103,6 +108,8 @@ function App() {
           <Route path='/album/:id' element={<AlbumPage func={GiveData} currentIndex={currentIndex} currentTrackId={currentTrackId}/>}></Route>
           <Route path='/artist/:id' element={<ArtistPage func={GiveData} currentIndex={currentIndex} currentTrackId={currentTrackId}/>}></Route>
           <Route path='/genre/:id' element={<Genres/>}></Route>
+          <Route path='/user' element={<User data={userinfo}/>}></Route>
+          <Route path='/premium' element={<Premium/>}></Route>
         </Route>
       </Routes>
     </>

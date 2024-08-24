@@ -1,5 +1,7 @@
 @import url('https://fonts.cdnfonts.com/css/circular-std');
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 * {
   padding: 0;
   margin: 0;
@@ -9,6 +11,56 @@
   /* outline: 1px solid green !important; */
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   /* Важно, не трогать! */
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #121212;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-top-right-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #888;
+}
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  z-index: 10;
+}
+
+.preloader img {
+  width: 350px;
+  height: 350px;
+  filter: drop-shadow(1px 1px 20px #1db954);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    width: 350px;
+    height: 350px;
+    transform: rotate(0deg);
+  }
+  100% {
+    width: 50px;
+    height: 50px;
+    transform: rotate(360deg);
+  }
 }
 
 .body {
@@ -580,6 +632,10 @@ header .first {
   width: 21px;
 }
 
+.install_text a {
+  color: #fff;
+}
+
 .account_blc {
   width: fit-content;
   height: 40px;
@@ -693,6 +749,9 @@ header .first {
 
 .person img {
   width: 21px;
+  height: 21px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .show {
@@ -1107,6 +1166,10 @@ footer {
   color: #fff;
   font-size: 32px;
   font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
   line-height: normal;
 }
 
@@ -1573,4 +1636,409 @@ footer {
   left: 0;
 }
 
+.premium_blc {
+  width: 100%;
+  height: 300px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  background: linear-gradient(120deg, #b30d9e, #2f2880);
+}
 
+.premium_blc h1 {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.premium_blc h4 {
+  color: #fff;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.premium_btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.premium_btns button {
+  width: 225px;
+  height: 50px;
+  border: none;
+  background: #fff;
+  border-radius: 32px;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: normal;
+  margin: 25px 0 25px 0;
+  cursor: pointer;
+}
+
+.premium_btns button:nth-child(2) {
+  width: 170px;
+  color: #fff;
+  background: transparent;
+  border: 1px solid #fff;
+}
+
+.premium_btns button:hover {
+  transform: scale(1.05);
+}
+
+.premium_blc p {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+}
+
+.premium_blc p a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.choose_premium_blc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 30px 0 60px 0;
+}
+
+.choose_premium_blc h1 {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.choose_premium_blc h4 {
+  width: 750px;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+}
+
+.images_cards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.premium_white_blc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  background-color: #fff;
+  border-radius: 6px;
+  margin-top: 50px;
+}
+
+.images_cards img {
+  width: 50px;
+  height: 40px;
+  border-radius: 6px;
+  border: 2px solid #cbcbcb;
+  background-color: #fff;
+  object-fit: contain;
+}
+
+.american_express_card {
+  object-fit: cover !important;
+  border: none !important;
+}
+
+.premium_plans_blc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.premium_plans_blc h1 {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.premium_plans_blc ul {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  list-style: none;
+}
+
+.premium_plans_blc li {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.premium_limits_flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 60px;
+}
+
+.premium_limits_blc {
+  position: relative;
+  width: 350px;
+  height: 470px;
+  background-color: #2A2A2A;
+  border-radius: 6px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.premium_limits_blc span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #000;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: pink;
+  padding: 8px;
+  border-top-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.black_logo_spotify {
+  position: absolute;
+  top: 20px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 25px;
+}
+
+.black_logo_spotify img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.black_logo_spotify h6 {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.premium_blc_texts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 85px;
+}
+
+.premium_blc_texts h2 {
+  color: pink;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.premium_price h5 {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.premium_price h5:nth-child(2) {
+  color: #bfbfbf;
+}
+
+.premium_line_place {
+  margin: 20px 0 20px 0;
+}
+
+.premium_line {
+  width: 100%;
+  height: 2px;
+  background-color: #575757;
+}
+
+.premium_benefit {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: 20px;
+}
+
+.premium_benefit li {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.premium_btn_text {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 35px;
+}
+
+.premium_btn_text button {
+  width: 100%;
+  height: 55px;
+  border-radius: 32px;
+  border: none;
+  background: pink;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.premium_btn_text button:hover {
+  background: #f5f5f5;
+}
+
+.premium_btn_text small {
+  color: #b7b7b7;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+}
+
+.premium_btn_text small a {
+  color: #b7b7b7;
+}
+
+.premium_btn_text small a:hover {
+  text-decoration: underline;
+}
+
+.premium_free_plan_blc {
+  margin: 100px 0 100px 0;
+}
+
+.premium_tables {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.premium_content_table {
+  border-collapse: collapse;
+  min-width: 600px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.premium_content_table thead tr {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
+}
+
+.premium_content_table th,
+.premium_content_table td {
+  padding: 20px;
+}
+
+.premium_content_table tbody tr {
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
+}
+
+.premium_content_table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.premium_content_table tbody tr td:nth-child(1) {
+  text-decoration: underline dotted #888;
+}
+
+.premium_content_table tbody tr td span {
+  padding: 8px;
+  color: #000;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.premium_content_table thead tr th:nth-child(3) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.premium_content_table tbody tr td:nth-child(3) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.black_logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.black_logo img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.black_logo h6 {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.skeleton {
+  position: relative;
+}
+
+.skeleton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  background: linear-gradient(90deg, #2d2d2d 25%, #1d1d1d 50%, #2d2d2d 75%);
+  background-size: 200% 100%;
+  animation: skeletonLoad 3s infinite reverse;
+}
+
+@keyframes skeletonLoad {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}

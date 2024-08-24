@@ -47,6 +47,7 @@ function Playlist({ func,currentIndex,currentTrackId }) {
         <>
             <div className="playlist_background_page" style={data ? { height: "100%" } : {}}>
                 <div className="playlist_box_gradient_background" style={{ background: `linear-gradient(180deg, ${dominantColor} -15%, transparent 70%)` }}></div>
+                <div class="genre_playlist_background" style={{top: "340px"}}></div>
             </div>
             <div className="Playlist_box">
                 <div className="left">
