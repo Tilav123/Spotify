@@ -45,7 +45,6 @@ function Layout({ data, ind, func, user }) {
     const goBack = () => {
         window.history.back();
     };
-
     const goForward = () => {
         window.history.forward();
     };
