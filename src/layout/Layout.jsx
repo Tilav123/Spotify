@@ -21,7 +21,7 @@ function Layout({ data, ind, func, user }) {
     if (isSearchPage) {
         pathSegments = location.pathname.split('/');
     }
-    const [query,setQuery] = useState(id);
+    const [query, setQuery] = useState(id);
     const debouncedSearchTerm = useDebounce(query, 600);
     const navigate = useNavigate();
     let [isLooping, setIsLooping] = useState(false)
@@ -35,13 +35,13 @@ function Layout({ data, ind, func, user }) {
         aside.classList.toggle("hide_aside")
     }
     console.log(data);
-    useEffect(()=>{
-        if(query){
+    useEffect(() => {
+        if (query) {
             navigate(`/search/${query}${pathSegments[3] ? "/" + pathSegments[3] : ""}`)
-        }else if(isSearchPage && query == ""){
+        } else if (isSearchPage && query == "") {
             navigate(`/search`)
         }
-    },[debouncedSearchTerm])
+    }, [debouncedSearchTerm])
     const goBack = () => {
         window.history.back();
     };
@@ -116,7 +116,7 @@ function Layout({ data, ind, func, user }) {
         }, 1000)
     }, [])
 
-    function set_dis(){
+    function set_dis() {
         setIsdisplay(!isdisplay)
     }
     return (
@@ -145,21 +145,21 @@ function Layout({ data, ind, func, user }) {
                                 <img src="/library_icon.png" alt="" className="aside_icon aside_icon_two library_icon_aside_two" />
                                 <p className="aside_text">Моя медиатека</p>
                             </div>
-                            <button className="add_playlist">
+                            <button className="add_playlist aside_text">
                                 <img src="/plus_icon.webp" className="icon_aside invert" />
                             </button>
                         </div>
-                        <div className="aside_buttons">
+                        <div className="aside_buttons aside_text">
                             <button className="aside_button">Плейлисты</button>
                             <button className="aside_button">Исполнители</button>
                             <button className="aside_button">Альбомы</button>
                         </div>
-                        <div className="aside_buttons buttons_listened">
+                        <div className="aside_buttons buttons_listened aside_text">
                             <button className="add_playlist">
                                 <img src="/search_icon.png" className="icon_aside search_aside_icon" />
                             </button>
                             <div className="aside_listened">
-                                <p className="">Недавно прослушано</p>
+                                <p className="aside_text">Недавно прослушано</p>
                                 <img src="/aside_unknown_shit.png" alt="" className="listened_icon" />
                             </div>
                         </div>
@@ -180,13 +180,13 @@ function Layout({ data, ind, func, user }) {
 
                                     <img className="right" src="/left_arrow.svg" alt="" onClick={goForward} />
                                     <div className="search_box" style={isSearchPage ? { display: "block" } : { display: "none" }}>
-                                        <input type="text" name="" id="" className="search_input" placeholder="Что хочешь включить ?" value={query} onChange={(e)=>setQuery(e.target.value)}/>
+                                        <input type="text" name="" id="" className="search_input" placeholder="Что хочешь включить ?" value={query} onChange={(e) => setQuery(e.target.value)} />
                                     </div>
                                 </div>
 
                                 <div className="additional_features">
 
-                                    <p className="premium_text" style={isSearchPage ? { display: "none" } : { display: "block" }}><Link to={"/premium"} style={{color: "#000"}}>Узнать больше о Premium</Link></p>
+                                    <p className="premium_text" style={isSearchPage ? { display: "none" } : { display: "block" }}><Link to={"/premium"} style={{ color: "#000" }}>Узнать больше о Premium</Link></p>
 
                                     <p className="install_text"> <span><img src="/download.svg" alt="" /></span><a href="https://open.spotify.com/download">Установить приложение</a></p>
 
@@ -199,13 +199,13 @@ function Layout({ data, ind, func, user }) {
                                     </div>
                                 </div>
 
-                                <div style={isdisplay ? {display: "flex"} : {display: "none"}} className="modal">
+                                <div style={isdisplay ? { display: "flex" } : { display: "none" }} className="modal">
                                     <div className="modal_dialog">
                                         <ul>
                                             <li><Link to={"/user"}>Профиль</Link></li>
                                             <li><Link>Настройки</Link></li>
                                             <li className="line"></li>
-                                            <li style={{color: "white"}}>Выйти</li>
+                                            <li style={{ color: "white" }}>Выйти</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -237,35 +237,49 @@ function Layout({ data, ind, func, user }) {
                             <div className="cant">
                                 <div className="item">
                                     <span>Компания</span>
-                                    <a href="#">О нас</a>
-                                    <a href="#">Вакансии</a>
-                                    <a href="#">For the Record</a>
+                                    <a href="https://www.spotify.com/uz/about-us/contact/">О нас</a>
+                                    <a href="https://www.lifeatspofity.com">Вакансии</a>
+                                    <a href="https://www.newsroom.spotify.com">For the Record</a>
                                 </div>
                                 <div className="item">
                                     <span>Сообщества</span>
-                                    <a href="#">Для исполнителей</a>
-                                    <a href="#">Для разработчиков</a>
-                                    <a href="#">Реклама</a>
-                                    <a href="#">Для инвесторов</a>
-                                    <a href="#">Для вендоров</a>
+                                    <a href="https://artists.spotify.com">Для исполнителей</a>
+                                    <a href="https://developer.spotify.com">Для разработчиков</a>
+                                    <a href="https://ads.spotify.com">Реклама</a>
+                                    <a href="https://investors.spotify.com">Для инвесторов</a>
+                                    <a href="https://spotifyforvendors.com">Для вендоров</a>
                                 </div>
                                 <div className="item">
                                     <span>Полезные ссылки</span>
-                                    <a href="#">Справка</a>
-                                    <a href="#">Бесплатное мобильное <br /> приложение</a>
+                                    <a href="https://support.spotify.com">Справка</a>
+                                    <a href="https://www.spotify.com/uz/download">Бесплатное мобильное <br /> приложение</a>
                                 </div>
                                 <div className="item">
                                     <span>Планы Spotify</span>
-                                    <a href="#">Индивидуальная <br /> подписка Spotify <br /> Premium</a>
-                                    <a href="#">Premium для двоих</a>
-                                    <a href="#">Premium для семьи</a>
-                                    <a href="#">Premium для студентов</a>
-                                    <a href="#">Бесплатная версия Spotify</a>
+                                    <a href="https://www.spotify.com/uz/premium/?ref=spotifycom_footer_premium_individual">Индивидуальная <br /> подписка Spotify <br /> Premium</a>
+                                    <a href="https://www.spotify.com/uz/duo/?ref=spotify_footer_premium_duo">Premium для двоих</a>
+                                    <a href="https://www.spotify.com/uz/family/?ref=spotifycom_footer_premium_family">Premium для семьи</a>
+                                    <a href="https://www.spotify.com/uz/student/?ref=spotifycom_footer_premium_student">Premium для студентов</a>
+                                    <a href="https://www.spoftify.com/uz/free/?ref=spotifycom_footer_free">Бесплатная версия Spotify</a>
                                 </div>
                                 <div className="items">
-                                    <img className="icons" src="/insta.svg" alt="" />
-                                    <img className="icons" src="/twitter.svg" alt="" />
-                                    <img className="icons" src="/facebook.svg" alt="" />
+                                    <a href="https://instagram.com/spotify">
+
+                                        <img className="icons" src="/insta.svg" alt="" />
+
+                                    </a>
+
+                                    <a href="https://twitter.com/spotify">
+
+                                        <img className="icons" src="/twitter.svg" alt="" />
+
+                                    </a>
+
+                                    <a href="https://facebook.com/Spotify">
+
+                                        <img className="icons" src="/facebook.svg" alt="" />
+
+                                    </a>
                                 </div>
                             </div>
                             <div className="hr"></div>

@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'vsm': { 'raw': '(min-width: 425px)' }
+      }
+    },
   },
   plugins: [],
 }
