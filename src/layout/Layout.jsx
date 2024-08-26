@@ -174,7 +174,7 @@ function Layout({ data, ind, func, user }) {
                 </aside>
                 <main style={location.pathname === '/' ? { background: 'linear-gradient(180deg, #159b44 0%, #121212 30%)' } : {}}>
                     <div className="container">
-                        <header className="max-[996px]:hidden">
+                        <header className="">
                             <div className="first">
                                 <div className="arrows">
 
@@ -239,35 +239,49 @@ function Layout({ data, ind, func, user }) {
                             <div className="cant">
                                 <div className="item">
                                     <span>Компания</span>
-                                    <a href="#">О нас</a>
-                                    <a href="#">Вакансии</a>
-                                    <a href="#">For the Record</a>
+                                    <a href="https://www.spotify.com/uz/about-us/contact/">О нас</a>
+                                    <a href="https://www.lifeatspofity.com">Вакансии</a>
+                                    <a href="https://www.newsroom.spotify.com">For the Record</a>
                                 </div>
                                 <div className="item">
                                     <span>Сообщества</span>
-                                    <a href="#">Для исполнителей</a>
-                                    <a href="#">Для разработчиков</a>
-                                    <a href="#">Реклама</a>
-                                    <a href="#">Для инвесторов</a>
-                                    <a href="#">Для вендоров</a>
+                                    <a href="https://artists.spotify.com">Для исполнителей</a>
+                                    <a href="https://developer.spotify.com">Для разработчиков</a>
+                                    <a href="https://ads.spotify.com">Реклама</a>
+                                    <a href="https://investors.spotify.com">Для инвесторов</a>
+                                    <a href="https://spotifyforvendors.com">Для вендоров</a>
                                 </div>
                                 <div className="item">
                                     <span>Полезные ссылки</span>
-                                    <a href="#">Справка</a>
-                                    <a href="#">Бесплатное мобильное <br /> приложение</a>
+                                    <a href="https://support.spotify.com">Справка</a>
+                                    <a href="https://www.spotify.com/uz/download">Бесплатное мобильное <br /> приложение</a>
                                 </div>
                                 <div className="item">
                                     <span>Планы Spotify</span>
-                                    <a href="#">Индивидуальная <br /> подписка Spotify <br /> Premium</a>
-                                    <a href="#">Premium для двоих</a>
-                                    <a href="#">Premium для семьи</a>
-                                    <a href="#">Premium для студентов</a>
-                                    <a href="#">Бесплатная версия Spotify</a>
+                                    <a href="https://www.spotify.com/uz/premium/?ref=spotifycom_footer_premium_individual">Индивидуальная <br /> подписка Spotify <br /> Premium</a>
+                                    <a href="https://www.spotify.com/uz/duo/?ref=spotify_footer_premium_duo">Premium для двоих</a>
+                                    <a href="https://www.spotify.com/uz/family/?ref=spotifycom_footer_premium_family">Premium для семьи</a>
+                                    <a href="https://www.spotify.com/uz/student/?ref=spotifycom_footer_premium_student">Premium для студентов</a>
+                                    <a href="https://www.spoftify.com/uz/free/?ref=spotifycom_footer_free">Бесплатная версия Spotify</a>
                                 </div>
                                 <div className="items">
-                                    <img className="icons" src="/insta.svg" alt="" />
-                                    <img className="icons" src="/twitter.svg" alt="" />
-                                    <img className="icons" src="/facebook.svg" alt="" />
+                                    <a href="https://instagram.com/spotify">
+
+                                        <img className="icons" src="/insta.svg" alt="" />
+
+                                    </a>
+
+                                    <a href="https://twitter.com/spotify">
+
+                                        <img className="icons" src="/twitter.svg" alt="" />
+
+                                    </a>
+
+                                    <a href="https://facebook.com/Spotify">
+
+                                        <img className="icons" src="/facebook.svg" alt="" />
+
+                                    </a>
                                 </div>
                             </div>
                             <div className="hr"></div>

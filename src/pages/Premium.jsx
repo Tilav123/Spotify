@@ -52,19 +52,19 @@ function Premium() {
 
                 <div className="premium_blc">
 
-                    <h1>USD 0.00 for 3 months of Premium</h1>
+                    <h1 className="text-white text-[32px] vsm:text-[20px] sm:text-[24px] md:text-[32px] font-bold text-center">USD 0.00 for 3 months of Premium</h1>
 
-                    <h4>Enjoy ad-free music listening, offline playback, and more. Cancel anytime.</h4>
+                    <h4 className="text-white text-[19px] sm:text-[16px] font-normal text-center">Enjoy ad-free music listening, offline playback, and more. Cancel anytime.</h4>
 
-                    <div className="premium_btns">
+                    <div className="flex items-center justify-center gap-5 flex-wrap my-[25px]">
 
-                        <button>Try free for 3 months</button>
+                        <button className="w-[225px] h-12 border-none bg-white rounded-[32px] text-base font-extrabold cursor-pointer hover:scale-105">Try free for 3 months</button>
 
-                        <button>View all plans</button>
+                        <button className="w-[170px] h-12 text-white bg-transparent rounded-[32px] text-base font-extrabold border border-solid border-white cursor-pointer hover:scale-105">View all plans</button>
 
                     </div>
 
-                    <p>Premium Individual only. Free for 3 months, then $4.99 per month after. Offer only available if you haven't tried Premium before. <a href="https://www.spotify.com/uz/legal/premium-promotional-offer-terms/">Terms apply</a>. Offer ends September 17, 2024.</p>
+                    <p className="text-white text-[14px] font-normal text-center">Premium Individual only. Free for 3 months, then $4.99 per month after. Offer only available if you haven't tried Premium before. <a className="text-white underline" href="https://www.spotify.com/uz/legal/premium-promotional-offer-terms/">Terms apply</a>. Offer ends September 17, 2024.</p>
 
                 </div>
 
@@ -100,7 +100,7 @@ function Premium() {
 
                 <div className="premium_plans_blc">
 
-                    <h1>All Premium plans include</h1>
+                    <h1 className="text-white text-[32px] sm:text-[24px] md:text-[32px] font-bold text-center">All Premium plans include</h1>
 
                     <ul>
 
