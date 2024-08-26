@@ -20,7 +20,7 @@ function App() {
   let [playlistData, setPlaylistData] = useState([]);
   let [categories_arr, setCategoriesArr] = useState([]);
   const clientId = 'b3b941518f764b86b2d9ecf3a2a60701';
-  const REDIRECT_URI = 'http://localhost:5173/';
+  const REDIRECT_URI = 'https:/spotiwy.netlify.app';
   const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
   const RESPONSE_TYPE = 'token';
   let [userinfo, setUserinfo] = useState([])
