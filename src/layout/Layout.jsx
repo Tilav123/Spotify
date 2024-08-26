@@ -12,6 +12,7 @@ function Layout({ data, ind, func, user }) {
     const { id } = useParams();
     console.log(user);
     const isSearchPage = location.pathname.startsWith('/search');
+    const isPremiumPage = location.pathname.startsWith('/premium');
     const isSearchWithId = /^\/search\/[^/]+(?:\/.*)?$/.test(location.pathname);
     const isSearchWithOnlyId = /^\/search\/[^/]+$/.test(location.pathname);
     const isSearchWithIdAndTracks = /^\/search\/[^/]+\/tracks$/.test(location.pathname);
@@ -21,7 +22,8 @@ function Layout({ data, ind, func, user }) {
     if (isSearchPage) {
         pathSegments = location.pathname.split('/');
     }
-    const [query,setQuery] = useState(id);
+    const [isMobile, setIsMobile] = useState(false)
+    const [query, setQuery] = useState(id);
     const debouncedSearchTerm = useDebounce(query, 600);
     const navigate = useNavigate();
     let [isLooping, setIsLooping] = useState(false)
@@ -35,13 +37,13 @@ function Layout({ data, ind, func, user }) {
         aside.classList.toggle("hide_aside")
     }
     console.log(data);
-    useEffect(()=>{
-        if(query){
+    useEffect(() => {
+        if (query && pathSegments) {
             navigate(`/search/${query}${pathSegments[3] ? "/" + pathSegments[3] : ""}`)
-        }else if(isSearchPage && query == ""){
+        } else if (isSearchPage && query == "") {
             navigate(`/search`)
         }
-    },[debouncedSearchTerm])
+    }, [debouncedSearchTerm])
     const goBack = () => {
         window.history.back();
     };
@@ -116,7 +118,7 @@ function Layout({ data, ind, func, user }) {
         }, 1000)
     }, [])
 
-    function set_dis(){
+    function set_dis() {
         setIsdisplay(!isdisplay)
     }
     return (
@@ -124,41 +126,41 @@ function Layout({ data, ind, func, user }) {
 
             {loading ? <div className="preloader"><img src="/logo.png" alt="" /></div> : <div></div>}
 
-            <div className="body">
-                <aside>
+            <div className="body max-[996px]:p-0 max-[996px]:h-full">
+                <aside className="max-[1350px]:w-[72px] max-[996px]:hidden">
                     <div className="top_aside">
-                        <Link to={"/"} className={`aside_part ${location.pathname == '/' && "active_aside_part"}`}>
+                        <Link to={"/"} className={`aside_part max-[1350px]:justify-center ${location.pathname == '/' && "active_aside_part"}`}>
                             <img src="/home_icon.png" alt="" className="aside_icon" />
                             <img src="/home_active_icon.png" alt="" className="aside_icon aside_icon_two" />
-                            <p className="aside_text">Главная</p>
+                            <p className="aside_text max-[1350px]:hidden">Главная</p>
                         </Link>
-                        <Link to={query ? `/search/${query}` : "/search"} className={`aside_part ${isSearchPage && "active_aside_part"}`}>
+                        <Link to={query ? `/search/${query}` : "/search"} className={`aside_part max-[1350px]:justify-center ${isSearchPage && "active_aside_part"}`}>
                             <img src="/search_icon.png" alt="" className="aside_icon" />
                             <img src="/search_active_icon.png" alt="" className="aside_icon aside_icon_two" />
-                            <p className="aside_text">Поиск</p>
+                            <p className="aside_text max-[1350px]:hidden">Поиск</p>
                         </Link>
                     </div>
                     <div className="bottom_aside">
                         <div className="aside_part_two">
-                            <div className="aside_part" onClick={hidingAside}>
-                                <img src="/library_active_icon.png" alt="" className="aside_icon library_icon_aside" />
-                                <img src="/library_icon.png" alt="" className="aside_icon aside_icon_two library_icon_aside_two" />
-                                <p className="aside_text">Моя медиатека</p>
+                            <div className="aside_part max-[1350px]:justify-center" onClick={hidingAside}>
+                                <img src="/library_active_icon.png" alt="" className="aside_icon library_icon_aside max-[1350px]:hidden" />
+                                <img src="/library_icon.png" alt="" className="aside_icon aside_icon_two library_icon_aside_two max-[1350px]:block" />
+                                <p className="aside_text max-[1350px]:hidden">Моя медиатека</p>
                             </div>
-                            <button className="add_playlist">
+                            <button className="add_playlist max-[1350px]:hidden">
                                 <img src="/plus_icon.webp" className="icon_aside invert" />
                             </button>
                         </div>
-                        <div className="aside_buttons">
-                            <button className="aside_button">Плейлисты</button>
-                            <button className="aside_button">Исполнители</button>
-                            <button className="aside_button">Альбомы</button>
+                        <div className="aside_buttons max-[1350px]:hidden">
+                            <button className="aside_button max-[1350px]:hidden">Плейлисты</button>
+                            <button className="aside_button max-[1350px]:hidden">Исполнители</button>
+                            <button className="aside_button max-[1350px]:hidden">Альбомы</button>
                         </div>
-                        <div className="aside_buttons buttons_listened">
-                            <button className="add_playlist">
+                        <div className="aside_buttons buttons_listened max-[1350px]:hidden">
+                            <button className="add_playlist max-[1350px]:hidden">
                                 <img src="/search_icon.png" className="icon_aside search_aside_icon" />
                             </button>
-                            <div className="aside_listened">
+                            <div className="aside_listened max-[1350px]:hidden">
                                 <p className="">Недавно прослушано</p>
                                 <img src="/aside_unknown_shit.png" alt="" className="listened_icon" />
                             </div>
@@ -172,7 +174,7 @@ function Layout({ data, ind, func, user }) {
                 </aside>
                 <main style={location.pathname === '/' ? { background: 'linear-gradient(180deg, #159b44 0%, #121212 30%)' } : {}}>
                     <div className="container">
-                        <header>
+                        <header className="max-[996px]:hidden">
                             <div className="first">
                                 <div className="arrows">
 
@@ -180,13 +182,13 @@ function Layout({ data, ind, func, user }) {
 
                                     <img className="right" src="/left_arrow.svg" alt="" onClick={goForward} />
                                     <div className="search_box" style={isSearchPage ? { display: "block" } : { display: "none" }}>
-                                        <input type="text" name="" id="" className="search_input" placeholder="Что хочешь включить ?" value={query} onChange={(e)=>setQuery(e.target.value)}/>
+                                        <input type="text" name="" id="" className="search_input" placeholder="Что хочешь включить ?" value={query} onChange={(e) => setQuery(e.target.value)} />
                                     </div>
                                 </div>
 
                                 <div className="additional_features">
 
-                                    <p className="premium_text" style={isSearchPage ? { display: "none" } : { display: "block" }}><Link to={"/premium"} style={{color: "#000"}}>Узнать больше о Premium</Link></p>
+                                    <p className="premium_text" style={isSearchPage ? { display: "none" } : { display: "block" }}><Link to={"/premium"} style={{ color: "#000" }}>Узнать больше о Premium</Link></p>
 
                                     <p className="install_text"> <span><img src="/download.svg" alt="" /></span><a href="https://open.spotify.com/download">Установить приложение</a></p>
 
@@ -199,13 +201,13 @@ function Layout({ data, ind, func, user }) {
                                     </div>
                                 </div>
 
-                                <div style={isdisplay ? {display: "flex"} : {display: "none"}} className="modal">
+                                <div style={isdisplay ? { display: "flex" } : { display: "none" }} className="modal">
                                     <div className="modal_dialog">
                                         <ul>
                                             <li><Link to={"/user"}>Профиль</Link></li>
                                             <li><Link>Настройки</Link></li>
                                             <li className="line"></li>
-                                            <li style={{color: "white"}}>Выйти</li>
+                                            <li style={{ color: "white" }}>Выйти</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -274,37 +276,76 @@ function Layout({ data, ind, func, user }) {
                     </div>
                 </main>
             </div>
-
-            <div className="player">
-                <div className="player_hidden" style={data.length > 0 ? { display: "none" } : { display: "block" }}></div>
-                <div className="player_left">
+            <div className="mini_mobile_player  max-[996px]:flex">
+                <div className="mobile_background" onClick={() => setIsMobile(!isMobile)}></div>
+                <div className="mobile_info" onClick={() => setIsMobile(!isMobile)}>
                     <img src={data.length > 0
                         ? (data[ind].track?.album?.images[0]?.url || data[ind]?.album?.images[0]?.url || "/notFound.png")
-                        : ""} className="player_left_img" />
-                    <div className="player_left_text_box">
-                        <p className="player_song_name">{data.length > 0 ? data[ind].track?.name || data[ind].name : ""}</p>
-                        <p className="player_song_artist">{data.length > 0 ? data[ind].track?.artists[0].name || data[ind].artists[0].name : ""}</p>
+                        : ""} alt="" className="mobile_image" />
+                    <div>
+                        <p className="mobile_name">{data.length > 0 ? data[ind].track?.name || data[ind].name : "nothing"}</p>
+                        <p className="mobile_artist">{data.length > 0 ? data[ind].track?.artists[0].name || data[ind].artists[0].name : "nothing"}</p>
                     </div>
-                    <img src="/plus.svg" className="player_icon_tilav" style={{ padding: "4px" }} />
                 </div>
-                <div className="player_center">
-                    <div className="player_center_interface">
-                        <img src="/random_button.png" alt="" className="player_icon_tilav" onClick={randomSong} />
-                        <img src="/back_song.png" alt="" className="player_icon_tilav" onClick={previousSong} />
-                        <img src={played ? "/play.png" : "/stop.png"} alt="" className="player_icon_tilav normal_size_img_player" onClick={playsongpause} />
-                        <img src="/forward_song.png" alt="" className="player_icon_tilav" onClick={nextSong} />
-                        <img src={isLooping ? "/loop_active.svg" : "/loop.png"} alt="" className="player_icon_tilav" onClick={Loop} />
+                <img src={played ? "/pause_mobile.png" : "/play_mobile.png"} className="mobile_playpause" onClick={playsongpause} />
+            </div>
+            <div className="mini_mobile_menu max-[996px]:flex">
+                <Link to={`/`} className={`mobile_link max-[996px]:justify-center max-[996px]:gap-[5px] aside_part ${location.pathname == '/' && "active_aside_part"}`}>
+                    <img src="/home_icon.png" alt="" className="aside_icon w-[24px] h-[24px]" />
+                    <img src="/home_active_icon.png" alt="" className="aside_icon aside_icon_two w-[24px] h-[24px]" />
+                    <p className="aside_text text-[10px]">Главная</p></Link>
+                <Link to={query ? `/search/${query}` : "/search"} className={`mobile_link aside_part max-[996px]:justify-center max-[996px]:gap-[5px] ${isSearchPage && "active_aside_part"}`}>
+                    <img src="/search_icon.png" alt="" className="aside_icon w-[24px] h-[24px]" />
+                    <img src="/search_active_icon.png" alt="" className="aside_icon aside_icon_two w-[24px] h-[24px]" />
+                    <p className="aside_text text-[10px]">Поиск</p>
+                </Link>
+                <Link to={``} className="mobile_link aside_part max-[996px]:justify-center max-[996px]:gap-[5px]">
+                    <img src="/library_icon.png" alt="" className="aside_icon w-[24px] h-[24px]" />
+                    <img src="/library_active_icon.png" alt="" className="aside_icon aside_icon_two w-[24px] h-[24px]" />
+                    <p className="aside_text text-[10px]">Моя медиатека</p></Link>
+                <Link to={"/premium"} className={`mobile_link aside_part max-[996px]:justify-center max-[996px]:gap-[5px] ${isPremiumPage && "active_aside_part"}`}>
+                    <img src="/white_spotify_logo.png" alt="" className="aside_icon w-[24px] h-[24px]" />
+                    <img src="/white_spotify_logo.png" alt="" className="aside_icon aside_icon_two w-[24px] h-[24px]" />
+                    <p className="aside_text text-[10px]">Premium</p>
+                </Link>
+            </div>
+            <div className="player max-[996px]:fixed max-[996px]:h-[100vh] max-[996px]:bottom-0 max-[996px]:z-[100] max-[996px]:flex-col max-[996px]:p-[15px] max-[996px]:gap-[35px] max-[996px]:overflow-y-auto max-[996px]:justify-start" style={isMobile ? { bottom: '0' } : { bottom: '-200%' }}>
+                <div className="player_hidden" style={data.length > 0 ? { display: "none" } : { display: "block" }}></div>
+                <div className="player_before_left hidden max-[996px]:flex">
+                    <div className="arrow" onClick={() => setIsMobile(!isMobile)}></div>
+                    <p className="player_song_name max-[996px]:text-[13px]">{data.length > 0 ? data[ind].track?.name || data[ind].name : ""}</p>
+                    <div className="options"></div>
+                </div>
+                <div className="player_left max-[996px]:w-full max-[996px]:flex max-[996px]:justify-center max-[996px]:flex-col max-[996px]:gap-[35px] max-[996px]:h-auto">
+                    <img src={data.length > 0
+                        ? (data[ind].track?.album?.images[0]?.url || data[ind]?.album?.images[0]?.url || "/notFound.png")
+                        : ""} className="player_left_img max-[996px]:w-[85%] max-[996px]:h-auto max-[996px]:max-w-[400px]" />
+                    <div className="flex gap-1 max-[996px]:w-full max-[996px]:justify-between max-[996px]:items-center">
+                        <div className="player_left_text_box">
+                            <p className="player_song_name max-[996px]:text-[20px]">{data.length > 0 ? data[ind].track?.name || data[ind].name : ""}</p>
+                            <p className="player_song_artist max-[996px]:text-[18px]">{data.length > 0 ? data[ind].track?.artists[0].name || data[ind].artists[0].name : ""}</p>
+                        </div>
+                        <img src="/plus.svg" className="player_icon_tilav max-[996px]:h-[35px] max-[996px]:w-[35px]" style={{ padding: "4px" }} />
                     </div>
-                    <div className="player_center_inteface_duration">
-                        <p className="time_duration">{isNaN(currentDuration) ? "0:00" : BeautifulTime(currentDuration)}</p>
-                        <div className="player_range_duration">
+                </div>
+                <div className="player_center max-[996px]:flex max-[996px]:flex-col-reverse max-[996px]:w-full max-[996px]:gap-[45px]">
+                    <div className="player_center_interface max-[996px]:gap-0 max-[996px]:justify-between max-[996px]:w-full">
+                        <img src="/random_button.png" alt="" className="player_icon_tilav max-[996px]:w-[34px] max-[996px]:h-[32px]" onClick={randomSong} />
+                        <img src="/back_song.png" alt="" className="player_icon_tilav max-[996px]:w-[34px] max-[996px]:h-[32px]" onClick={previousSong} />
+                        <img src={played ? "/play.png" : "/stop.png"} alt="" className="player_icon_tilav normal_size_img_player max-[996px]:w-[56px] max-[996px]:h-[56px]" onClick={playsongpause} />
+                        <img src="/forward_song.png" alt="" className="player_icon_tilav max-[996px]:w-[34px] max-[996px]:h-[32px]" onClick={nextSong} />
+                        <img src={isLooping ? "/loop_active.svg" : "/loop.png"} alt="" className="player_icon_tilav max-[996px]:w-[34px] max-[996px]:h-[32px]" onClick={Loop} />
+                    </div>
+                    <div className="player_center_inteface_duration max-[1300px]:w-[475px] max-[996px]:w-full max-[996px]:relative">
+                        <p className="time_duration max-[996px]:absolute max-[996px]:bottom-[-30px] max-[996px]:left-0">{isNaN(currentDuration) ? "0:00" : BeautifulTime(currentDuration)}</p>
+                        <div className="player_range_duration max-[996px]:grow">
                             <div className="range_track" style={{ width: `${progressPrecent}%` }}></div>
                             <input type="range" name="" id="" value={progressPrecent} min={0} max={100} className="duration_range" onInput={setProgress} />
                         </div>
-                        <p className="time_duration">{isNaN(duration) ? "0:00" : BeautifulTime(duration)}</p>
+                        <p className="time_duration max-[996px]:absolute max-[996px]:bottom-[-30px] max-[996px]:right-0">{isNaN(duration) ? "0:00" : BeautifulTime(duration)}</p>
                     </div>
                 </div>
-                <div className="player_right">
+                <div className="player_right max-[996px]:hidden">
                     <img src="/download_icon.png" alt="" className="player_icon_tilav mini_size_img_player" />
                     <img src="/volume_icon.png" alt="" className="player_icon_tilav mini_size_img_player" />
                     <div className="player_range_duration" style={{ width: "90px" }}>
